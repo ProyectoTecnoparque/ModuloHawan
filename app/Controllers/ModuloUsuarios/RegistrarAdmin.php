@@ -11,19 +11,11 @@ class RegistrarAdmin extends BaseController
    {
     echo view('template/header');
     echo view('ModuloUsuarios/registrar_admin');
-    echo view('template/footer')
-   }
-
-  
-
-   public function Registrar()
-   {
-      echo view('RegistrarUsuario');
+    echo view('template/footer');
    }
 
    public function RegistrarUsuario()
    {
-
       $documento = $this->request->getPostGet('documento');
       $nombres = $this->request->getPostGet('nombres');
       $apellidos = $this->request->getPostGet('apellidos');
@@ -57,8 +49,8 @@ class RegistrarAdmin extends BaseController
                'genero' => $genero,
                'departamento' => $departamento,
                'estado' => 'Activo',
-               'tipo_usuario' => 'Usuario',
-               'puntos' => $puntos,
+               'tipo_usuario' => 'Administrador',
+               'puntos' => 'NULL',
                // Administrador
             ]);
             if ($registros) {

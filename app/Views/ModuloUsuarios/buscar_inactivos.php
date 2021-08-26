@@ -24,7 +24,7 @@
               <table id="usuarios_inactivos" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Id</th>
+                  <th>Id</th>
                     <th>Email</th>
                     <th>Documento</th>
                     <th>Nombre </th>
