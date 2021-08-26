@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/Login', 'Inicio::index');
 $routes->get('/Inicio', 'Inicio::cargarVistaInicio');
 $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
+
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Puntos', 'Puntos::index');
 $routes->get('/Historial', 'Historial::historial_expe');
@@ -41,7 +42,11 @@ $routes->get('/Historial', 'Historial::historial_expe');
 
 // Rutas para el modulo de GestionUsuarios
 $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios'], function ($routes) {
+
+    // Registrar nuevo administrador
+    // $routes->add('RegistrarAdministrador', 'RegistrarAdministrador::index');
     
+    $routes->add('RegistrarAdministrador', 'BuscarUsuarios::RegistrarAdministrador');
     $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');
     $routes->add('CantidadUsuarios', 'BuscarUsuarios::totalUsuarios');
 
@@ -59,25 +64,13 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
 
      
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
-    $routes->add('CargarAvatar', 'PerfilUsuario::editarAvatar');
     // Buscar y Editar datos generales del perfil 
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
     $routes->add('EditarPerfil', 'PerfilUsuario::enviarnewdatos');
     
     //  Editar datos  de seguridad del perfil 
     $routes->add('PasswordPerfil', 'PerfilUsuario::password_edit');
-    
 
-
-    // Rutas para consultar y modificar la ciudad del usuario (AppMovil)
-    $routes->add('nombreCiudad', 'PerfilUsuario::consultarNombreCiudad');
-
-    $routes->add('CambiarCiudadMovil', 'PerfilUsuario::editarCiudadMovil');
-    $routes->add('EditarDatosMovil', 'PerfilUsuario::editarDatosMovil');
-    $routes->add('EditarEmailMovil', 'PerfilUsuario::editarCorreoMovil');
-    $routes->add('EditarPasswordMovil', 'PerfilUsuario::editarPasswordMovil');
-    $routes->add('DesactivarCuentaMovil', 'PerfilUsuario::desactivarUsuarioMovil');
-    $routes->add('ActualizarImagenPerfil', 'PerfilUsuario::editarAvatarMovil');
     
 });
 

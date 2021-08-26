@@ -163,14 +163,14 @@ if (!isset($_SESSION['tipo_usuario'])) {
                 <ul class="nav nav-treeview  ">
 
                   <li class="nav-item">
-                    <a href="<?php echo base_url('/ModuloUsuarios/RegistrarAdmin') ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'RegistrarAdministrador') ? 'active' : ''; ?> ">
+                  <a href="<?php echo base_url('/ModuloUsuarios/RegistrarAdministrador') ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'BuscarUsuarios') ? 'active' : ''; ?> ">
                       <i class="nav-icon fas fa-user-plus fa-xs"></i>
                       <p>Registrar Administrador</p>
                     </a>
                   </li>
 
                   <li class="nav-item">
-                    <a href="<?php echo base_url('/ModuloUsuarios/BuscarUsuarios') ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'BuscarUsuarios') ? 'active' : ''; ?> ">
+                    <a href="<?php echo base_url('/ModuloUsuarios/BuscarUsuarios') ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'BuscarUsuarios'); ?> ">
                       <i class="nav-icon fas fa-address-book"></i>
                       <p>Buscar Usuarios</p>
                     </a>
