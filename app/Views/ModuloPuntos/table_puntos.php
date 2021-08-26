@@ -9,12 +9,8 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h2 class="card-title"><b>Lista de Usuarios Activos</b></h2>
-                            <div class="d-grid d-md-flex  justify-content-md-end">
-                                <a href="<?php echo base_url('/ModuloUsuarios/BuscarInactivos') ?>" class="btn  bg-danger mr-4">
-                                    <i class="fas fa-user-lock"></i>
-                                    Niveles Inactivos</a>
-                            </div>
+                            <h2 class="card-title"><b>Lista de  Niveles y Valores</b></h2>
+                            
 
                         </div>
                         <!-- /.card-header -->
