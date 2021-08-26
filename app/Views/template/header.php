@@ -181,7 +181,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
 
             <?php } ?>
 
-            <li class="nav-item <?php echo (isset($modulo_selected) && $modulo_selected == 'Puntos') ? 'menu-is-opening menu-open' : ''; ?> ">
+            <!-- <li class="nav-item <?php echo (isset($modulo_selected) && $modulo_selected == 'Puntos') ? 'menu-is-opening menu-open' : ''; ?> ">
               <a href="#" class="nav-link <?php echo (isset($modulo_selected) && $modulo_selected == 'Puntos') ? 'active' : ''; ?> ">
                 <i class="nav-icon fas fa-newspaper"></i>
                 <p>
@@ -204,7 +204,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
                   <?php if ($_SESSION['tipo_usuario'] == "Administrador") { ?>
 
                   <li class="nav-item">
-                    <a href="<?php echo base_url('/ModuloPuntos/Puntos') ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'Puntos') ? 'active' : ''; ?> ">
+                    <a href="<?php echo base_url('/Historial'); ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'Puntos') ? 'active' : ''; ?> ">
                       <i class="nav-icon fas fa-circle"></i>
                       <p>Niveles Puntos</p>
                     </a>
@@ -222,12 +222,20 @@ if (!isset($_SESSION['tipo_usuario'])) {
                     </a>
                   </li>
                 <?php } ?>
-            </li>
+            </li> -->
 
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('/Puntos');?>">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Puntos Acumulados</span></a>
+                    <span>Niveles Puntos </span>
+                  </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('/Historial');?>">
+                    <i class="fas fa-fw fa-clock"></i>
+                    <span>Historial Acumulados</span>
+                  </a>
             </li>
 
             <li class="nav-item <?php echo (isset($modulo_selected) && $modulo_selected == 'Perfil') ? 'menu-is-opening menu-open' : ''; ?>">
@@ -236,7 +244,8 @@ if (!isset($_SESSION['tipo_usuario'])) {
                 <p>Ver Perfil</p>
               </a>
             </li>
-
+            
+            
 
             <li class="nav-item ">
               <a href="<?php echo base_url('Inicio/cerrarSession') ?>" class="nav-link">
@@ -246,10 +255,6 @@ if (!isset($_SESSION['tipo_usuario'])) {
                 </p>
               </a>
             </li>
-
-            
-
-
 
           </ul>
         </nav>

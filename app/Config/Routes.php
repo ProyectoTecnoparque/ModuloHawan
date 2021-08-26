@@ -36,6 +36,7 @@ $routes->get('/Inicio', 'Inicio::cargarVistaInicio');
 $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Puntos', 'Puntos::index');
+$routes->get('/Historial', 'Historial::historial_expe');
 
 
 // Rutas para el modulo de GestionUsuarios
@@ -85,7 +86,6 @@ $routes->group('ModuloPuntos', ['namespace' => 'App\Controllers\ModuloPuntos'], 
     $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');
 
 });
-
 
 
 /**

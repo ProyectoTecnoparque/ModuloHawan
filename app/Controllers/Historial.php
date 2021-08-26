@@ -14,7 +14,7 @@ class  Historial extends BaseController
             $data = ['datos' => $acumulador];
 
             echo view('template/header');
-            echo view('Historial/HistorialExp',$data);
+            echo view('ModuloHistorial/historial',$data);
             echo view('template/footer');
 
       }
