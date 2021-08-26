@@ -13,13 +13,13 @@
                   <div class="row">
 
                     <div class="col-8 col-md-8 col-lg-3 order-2 order-md-1">
-                      <div class="m-2">
-                        <img src="<?php echo base_url("public/dist/img/travel.png");?>" class="rounded float-start" alt="..." width="200" height="200">
+                      <div class="m-4">
+                        <img src="<?php echo base_url("public/dist/img/avatar.png");?>" class="rounded float-start ml-4" alt="..." width="200" height="200">
                       </div>
                     </div>
 
                     <div class="col-12 col-md-10 col-lg-8 order-1 order-md-4">
-                      <h3 class="text-success"><i class="fas fa-address-book mr-4"></i><b>Datos Usuario</b></h3>
+                      <h3 class="text-info"><i class="fas fa-address-book mr-4"></i><b>Datos Usuario</b></h3>
                       <div class="text-muted">
                         
                           <div class="card-body">
@@ -33,20 +33,18 @@
                               <dt class="col-sm-3">Genero</dt>
                               <dd class="col-sm-9"><?php echo $datos['genero'] ?></dd>
                               <dt class="col-sm-3">Email :</dt>
-                              <dd class="col-sm-9"><?php echo $datos['email'] ?></dd>
-                              <dt class="col-sm-3">Telefono :</dt>
-                              <dd class="col-sm-9"><?php echo $datos['telefono'] ?></dd>
+                              <dd class="col-sm-9"><?php echo $datos['email'] ?></dd> 
                               <dt class="col-sm-3">Fecha de registro :</dt>
                               <dd class="col-sm-9"><?php echo $datos['fecha_insert'] ?></dd>
                               <dt class="col-sm-3">Direccion :</dt>
                               <dd class="col-sm-9"><?php echo $datos['direccion'] ?></dd>
-                              <dt class="col-sm-3">Ciudad :</dt>
+                              <dt class="col-sm-3">Departamento :</dt>
                               <dd class="col-sm-9"><?php echo $datos['nombre'] ?></dd>
                               <dt class="col-sm-3">Estado :</dt>
                               <dd class="col-sm-9"><?php echo $datos['estado'] ?></dd>
                             </dl>
                           </div>
-                          <a href="<?php echo base_url('/ModuloUsuarios/BuscarUsuarios') ?>" class="btn  btn-success col-2 mt-4 mb-4 ml-4"><i class="mr-2 fas fa-arrow-circle-left"></i>Regresar</a>
+                          <a href="<?php echo base_url('/ModuloUsuarios/BuscarUsuarios') ?>" class="btn  btn-info col-2 mt-4 mb-4 ml-4"><i class="mr-2 fas fa-arrow-circle-left"></i>Regresar</a>
                       </div>
                     </div>
                   </div>

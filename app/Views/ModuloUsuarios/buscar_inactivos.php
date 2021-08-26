@@ -167,9 +167,7 @@
           icon: 'success',
           confirmButtonColor: '#3085d6',
           confirmButtonText: 'Aceptar',
-
         }).then((result) => {
-
           window.location = '<?php echo base_url('/ModuloUsuarios/BuscarUsuarios'); ?>';
         })
       } else {

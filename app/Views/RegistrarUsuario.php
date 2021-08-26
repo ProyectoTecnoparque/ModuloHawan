@@ -11,7 +11,7 @@ if (isset($_SESSION['tipo_usuario'])) {
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <title>REGISTRO VENDEDOR</title>
-   <link rel="icon" href="<?php echo base_url('public/dist/agroplaza.ico'); ?>" type="image/ico" />
+   <link rel="icon" href="<?php echo base_url('public/dist/img/travel.png'); ?>" type="image/ico" />
    <!-- Tell the browser to be responsive to screen width -->
    <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,7 +25,6 @@ if (isset($_SESSION['tipo_usuario'])) {
    <link rel="stylesheet" href="<?php echo base_url('public/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
    <!-- Theme style -->
    <link rel="stylesheet" href="<?php echo base_url('public/dist/css/adminlte.min.css') ?>">
-
 </head>
 
 <body>
@@ -176,7 +175,7 @@ if (isset($_SESSION['tipo_usuario'])) {
 
    <!-- sweetalert2 -->
    <script src="<?php echo base_url('/public/plugins/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
-    <script type="text/javascript">
+   <script type="text/javascript">
           $(document).ready(function(){
          
              $("#formulario_registro").submit(function(event){

@@ -42,17 +42,17 @@ $routes->get('/Historial', 'Historial::historial_expe');
 
 // Rutas para el modulo de GestionUsuarios
 $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios'], function ($routes) {
-
     // Registrar nuevo administrador
     // $routes->add('RegistrarAdministrador', 'RegistrarAdministrador::index');
     
     $routes->add('RegistrarAdministrador', 'BuscarUsuarios::RegistrarAdministrador');
-    $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');
-    $routes->add('CantidadUsuarios', 'BuscarUsuarios::totalUsuarios');
+    $routes->add('NuevoAdmin', 'BuscarUsuarios::NuevoAdmin');
 
+
+    $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');
+    $routes->add('BuscarusuId', 'BuscarUsuarios::buscarporId');
 
     $routes->add('MostrarUsuarios', 'BuscarUsuarios::listarusuarios');
-    $routes->add('BuscarusuId', 'BuscarUsuarios::buscarporId');
     $routes->add('Actuaestado', 'BuscarUsuarios::actualizarest');
     $routes->add('DesactivarUs', 'BuscarUsuarios::inactivarusuario');
 

@@ -12,7 +12,7 @@
                         <h3 class="mb-0">Registrar Administrador</h3>
                      </div>
                      <div class="card-body">
-                        <form id="formulario_registro" enctype="multipart/form-data" method="post" autocomplete="off">
+                        <form id="formulario_admin" enctype="multipart/form-data" method="post" autocomplete="off">
                            <div class="input-group mb-4">
                               <input type="text" class="form-control" name="documento" id="documento" placeholder="Documento de Identidad">
                               <div class="input-group-append">
@@ -119,3 +119,89 @@
    <!--/container-->
 </div>
 <!-- /.content-wrapper -->
+
+<script type="text/javascript">
+          $(document).ready(function(){
+         
+             $("#formulario_admin").submit(function(event){
+                event.preventDefault();
+                registraradmin();
+             });
+          });
+             function registraradmin(){
+                documento = $('#documento').val();
+                nombres = $('#nombres').val();
+                apellidos = $('#apellidos').val();
+                email = $('#email').val();
+                password = $('#password').val();
+                passwordconfirm = $('#passwordconfirm').val();
+                direccion = $('#direccion').val();
+                genero = $('#genero').val();
+                departamento = $('#departamento').val();
+               
+               
+                
+                if(documento != "" && nombres != "" && apellidos!= "" && email!= "" && password != ""   && direccion!= "" &&genero!= "" && departamento!= "" && passwordconfirm!= ""){
+                  $.ajax({
+                     url:'<?php echo base_url('/ModuloUsuario/NuevoAdmin')?>',
+                     type: 'POST',
+                     dataType:"text",
+                     data:{
+                        documento:documento,
+                        nombres:nombres,
+                        apellidos:apellidos,
+                        email:email,
+                        direccion:direccion,
+                        genero:genero,
+                        departamento:departamento,
+                        password:password
+                     }
+                  })
+                  .done(function(data){
+                     if (data == "FAIL#DOCUMENTO") {
+                          Swal.fire({
+                              icon: 'error',
+                              title: 'Ya esta registrado en el sistema!',
+                              text: 'El documento ingresado ya esta registrado.'
+                          })
+                      } else if (data == "FAIL#EMAIL") {
+                          Swal.fire({
+                              icon: 'error',
+                              title: 'Ya esta registrado en el sistema!',
+                              text: 'El correo ingresado ya esta registrado.'
+                          })
+                      } else if (data == "OK#CORRECT#DATA") {
+                           Swal.fire({
+                              text: "Se ha Registrado Correctamente el nuevo Administrado?",
+                              icon: 'success',
+                              confirmButtonColor: '#3085d6',
+                              confirmButtonText: 'Aceptar',
+                           }).then((result) => {
+                              window.location = '<?php echo base_url('/ModuloUsuarios/BuscarUsuarios')?>';
+                           })
+
+                        }else if (data == "OK#INVALID#DATA") {
+                          Swal.fire({
+                              icon: 'error',
+                              title: 'Error!',
+                              text: 'Los datos del usuario NO han sido registrados.'
+                          })
+                        }
+                  })
+                  .fail(function(data) {
+                     Swal.fire({
+                        icon: 'error',
+                        title: 'Ocurrio algo!',
+                        text: 'Ha ocurrido un error en el servidor, no se pudo registrar la información.'
+                     })
+                  });
+                }else{
+                  Swal.fire({
+                     icon: 'warning',
+                     title: 'Faltan datos',
+                     text: 'Debes llenar todos los campos del formulario'
+                  })
+                }
+              }
+         
+   </script>

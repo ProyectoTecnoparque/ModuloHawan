@@ -11,7 +11,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inicio Hawah</title>
-  <link rel="icon" href="<?php echo base_url('public/dist/agroplaza.ico'); ?>" type="image/ico" />
+  <link rel="icon" href="<?php echo base_url('public/dist/img/travel.png'); ?>" type="image/ico" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="<?php echo base_url('/public/dist/css/font.css'); ?>">
@@ -161,6 +161,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
                   </p>
                 </a>
                 <ul class="nav nav-treeview  ">
+
                   <li class="nav-item">
                   <a href="<?php echo base_url('/ModuloUsuarios/RegistrarAdministrador') ?>" class="nav-link <?php echo (isset($opcion_selected) && $opcion_selected == 'BuscarUsuarios') ? 'active' : ''; ?> ">
                       <i class="nav-icon fas fa-user-plus fa-xs"></i>

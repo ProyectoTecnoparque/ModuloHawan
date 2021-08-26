@@ -17,17 +17,6 @@ class BuscarInactivos extends BaseController {
 		echo view('ModuloUsuarios/buscar_inactivos',$personas);
 		echo view('template/footer');
 	}	
-	// public function listarinactivos(){
-	// 	$usuarios = new UsuariosModel();
-	// 	$usuarios = $usuarios->select('*')->where('estado','INACTIVO')->findAll();
-	// 	if (sizeof($usuarios)==0) {
-	// 		 echo json_encode('error');
-			
-	// 	} else {
-	// 		echo json_encode($usuarios);
-		
-	// 	}
-	// }
 
 	public function buscarinacId(){
 		$usuarios = new UsuariosModel();
@@ -41,7 +30,6 @@ class BuscarInactivos extends BaseController {
 		   
 	   } else {
 		   echo json_encode('error');
-	   
 	   }
 	}
 
@@ -55,7 +43,6 @@ class BuscarInactivos extends BaseController {
 		}else{
 			$mensaje = "NO#UPDATE";
 		}
-
 		echo $mensaje;
 	}
   
