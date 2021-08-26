@@ -14,7 +14,6 @@
                                 <a href="<?php echo base_url('/ModuloUsuarios/BuscarInactivos') ?>" class="btn  bg-danger mr-4">
                                     <i class="fas fa-user-lock"></i>
                                     Niveles Inactivos</a>
-
                             </div>
 
                         </div>
@@ -33,11 +32,11 @@
                                 <tbody id="tbodyusuarios">
                                     <?php foreach ($datos as $dato) { ?>
                                         <tr>
-                                            <td class="doc"><?php echo $dato['id']; ?></td>
+                                            <td class="nivel"><?php echo $dato['id']; ?></td>
                                             <td><?php echo $dato['Nivel']; ?></td>
                                             <td><?php echo $dato['puntos']; ?></td>
                                             <td><?php echo $dato['valor']; ?></td>
-                                            <th><a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarRango">Editar <i class="far fa-edit"></a></th>
+                                            <th><a type="button" class="btn btn-primary edit_nivel" data-bs-toggle="modal" data-bs-target="#editarRango">Editar <i class="far fa-edit"></a></th>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -97,8 +96,11 @@
 
 <script>
     $(document).ready(iniciar);
-     function iniciar(){
-       
+       function iniciar(){
+        var nivel = $(this).parents("tr").find(".nivel").val();
+        $('.edit_nivel').modal();
+
+        
      
      }
 </script>
