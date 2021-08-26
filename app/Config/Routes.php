@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/Login', 'Inicio::index');
 $routes->get('/Inicio', 'Inicio::cargarVistaInicio');
 $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
+ $routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Puntos', 'Puntos::index');
@@ -46,7 +47,7 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
     // $routes->add('RegistrarAdministrador', 'RegistrarAdministrador::index');
     
     $routes->add('RegistrarAdministrador', 'BuscarUsuarios::RegistrarAdministrador');
-    $routes->add('NuevoAdmin', 'BuscarUsuarios::NuevoAdmin');
+    // $routes->add('NuevoAdmin', 'BuscarUsuarios::NuevoAdmin');
 
 
     $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');

@@ -60,7 +60,7 @@ class BuscarUsuarios extends BaseController {
 		echo $mensaje;
 	}
 
-	
+
 	public function NuevoAdmin()
 	{
 	   $documento = $this->request->getPostGet('documento');
@@ -74,6 +74,7 @@ class BuscarUsuarios extends BaseController {
  
 	   $usuario = new UsuariosModel();
 	   $consulta = $usuario->where(['documento' => $documento])->find();
+
 	   if (sizeof($consulta) > 0) {
 		  $mensaje = "FAIL#DOCUMENTO";
 	   } else {
@@ -93,7 +94,7 @@ class BuscarUsuarios extends BaseController {
 				'genero' => $genero,
 				'departamento' => $departamento,
 				'estado' => 'Activo',
-				'tipo_usuario' => 'Usuario',
+				'tipo_usuario' => 'Administrador',
 				'puntos' => 'NULL',
 			 ]);
 			 if ($registros) {

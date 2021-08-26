@@ -1,11 +1,11 @@
 <!-- !prueba de pull sin push -->
 <!-- Content Wrapper. Contains page content -->
+
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
-
         <div class="col-12">
           <div class="card">
             <div class="card-header">
@@ -13,6 +13,28 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+              <!-- Main content -->
+              <section class="content">
+                <div class="container-fluid">
+                  <h2 class="text-center display-4">Buscar</h2>
+                  <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                      <form >
+                        <div class="input-group">
+                          <input type="search" class="form-control form-control-lg" placeholder="Ingrese el usuario o fecha de busqueda">
+                          <div class="input-group-append">
+                            <button type="submit" class="btn btn-lg btn-default">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <br>
+              <br>
               <table id="usuarios_inactivos" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -24,15 +46,15 @@
                   </tr>
                 </thead>
                 <tbody id="tbodyusuarios">
-                <?php foreach ($datos as $dato){?>
+                  <?php foreach ($datos as $dato) { ?>
                     <tr>
-                        <td><?php echo $dato['id']; ?></td>
-                        <td><?php echo $dato['usuario_id']; ?></td>
-                        <td><?php echo $dato['id_nivel']; ?></td>
-                        <td><?php echo $dato['acum_point']; ?></td>
-                        <td><?php echo $dato['fecha_insert']; ?></td>
+                      <td><?php echo $dato['id']; ?></td>
+                      <td><?php echo $dato['usuario_id']; ?></td>
+                      <td><?php echo $dato['id_nivel']; ?></td>
+                      <td><?php echo $dato['acum_point']; ?></td>
+                      <td><?php echo $dato['fecha_insert']; ?></td>
                     </tr>
-                  <?php }?>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>

@@ -138,12 +138,10 @@
                 direccion = $('#direccion').val();
                 genero = $('#genero').val();
                 departamento = $('#departamento').val();
-               
-               
                 
-                if(documento != "" && nombres != "" && apellidos!= "" && email!= "" && password != ""   && direccion!= "" &&genero!= "" && departamento!= "" && passwordconfirm!= ""){
+                if(documento!="" && nombres!="" && apellidos!="" && email!="" && password !=""  && direccion!="" && genero!= "" && departamento!="" && passwordconfirm!=""){
                   $.ajax({
-                     url:'<?php echo base_url('/ModuloUsuario/NuevoAdmin')?>',
+                     url:'<?php echo base_url('/Inicio/NuevoAdmin')?>',
                      type: 'POST',
                      dataType:"text",
                      data:{

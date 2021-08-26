@@ -69,7 +69,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="input-group mb-4">
 
                     <input type="text" class="form-control" id="puntos_req" name="puntos_req" placeholder="Ingrese el nuevo datos">
@@ -87,7 +86,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary">Guardar</button>
@@ -100,9 +98,8 @@
 <script>
     $(document).ready(iniciar);
      function iniciar(){
-         
+       
      
-
      }
 </script>
 
