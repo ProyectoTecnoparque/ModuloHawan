@@ -71,6 +71,9 @@
                                     <option value="2">Quindio</option>
                                     <option value="3">Caldas</option>
                               </select>
+                              <div class="input-group-text">
+                                    <span class="fas fa-street-view"></span>
+                              </div>
                            </div>
 
                            <div class="input-group mb-3">

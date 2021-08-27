@@ -19,9 +19,10 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="usuarios_activos" class="table table-bordered table-striped">
+              <table id="" class="table table-bordered table-striped">
                 <thead>
                   <tr>
+
                     <th>Id</th>
                     <th>Email</th>
                     <th>Documento</th>
@@ -40,8 +41,7 @@
                       <td><?php echo $dato['nombres'] . ' ' . $dato['apellidos']; ?></td>
                       <td><?php echo $dato['tipo_usuario']; ?></td>
                       <td><span class="btn bg-success"><?php echo $dato['estado']; ?></span></td>
-                      <td><a type="button" class="btn btn-primary mr-2 modal_edit" href="<?php echo base_url('/ModuloUsuarios/BuscarusuId?doc=') . $dato['id']; ?>"><i class="far fa-eye"></i></a>
-                          <a type="button" class="btn btn-danger toastrDefaultSuccess" id="desactivar"><i class="fas fa-user-lock"></i></a></td>
+                      <td><a t type="button" class="btn btn-primary mr-2 modal_edit" href="<?php echo base_url('/ModuloUsuarios/BuscarusuId?doc=') . $dato['id']; ?>"><i class="far fa-eye"></i></a><a class="btn btn-danger toastrDefaultSuccess desactivar"><i class="fas fa-user-lock"></i></a></td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -56,17 +56,113 @@
 </div>
 
 
+<!--INICIO PARA  MOSTRAR LOS DATOS DEL USUARIO ACTIVO -->
+<div class="modal fade " id="mod_editar">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h4 class="modal-title "><b>Datos Nuevo Usuario</b></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
+        <div class="form-group row md-2">
+          <div class="form-group col-6">
+            <label for="exampleInputEmail1">Documento</label>
+            <input type="text" class="form-control" id="documento_us" name="documento_us" disabled>
+          </div>
+          <div class="form-group col-6">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="email_us" name="email_us" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Estado</label>
+          <input type="text" class="form-control" id="estado_us" name="estado_us" disabled>
+
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary admitir" data-dismiss="modal">Guardar cambios</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- FIN DE MODAL PARA MOSTRAR LOS DATOS DEL USUARIO ACTIVO -->
 <script>
+  $(document).ready( function () {
+    $('#usuarios_activos').DataTable();
+} );
+</script>
+<!-- <script>
   $(document).ready(iniciar);
 
-  function iniciar(){
-    $(".modal_edit").click(buscarpenId);
-    $("#desactivar").click(desactivar);
+  function iniciar() {
+    $('#usuarios_activos').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+      },
+      "responsive": true,
+      "autoWidth": false,
+      "ordering": true,
+      "aoColumnDefs": [{
+          'bSortable': false,
+          'aTargets': [4]
+        },
+        {
+          'bSortable': false,
+          'aTargets': [6]
+        },
+        {
+          'bSortable': false,
+          'aTargets': [7]
+        }
+      ],
+    });
+
+    $(".mod_estado").click(buscarporId);
+    $(".desactivar").click(inactivarusuario);
   }
 
-  function desactivar() {
-    var doc = $(this).parents("tr").find(".doc_in").text();
+  function buscarporId() {
+    var doc = $(this).parents("tr").find(".doc").text();
+    $('#mod_editar').modal();
+    // var $estado = $(this).parents("tr").find(".td_estado").text();
+    // alert(doc);
+
+    $.ajax({
+        url: '<?php echo base_url('/ModuloUsuarios/BuscarusuId'); ?>',
+        type: 'POST',
+        dataType: "json",
+        data: {
+          doc: doc
+        },
+
+      }).done(function(data) {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+          $('#documento_us').val(data[i].documento);
+          $('#estado_us').val(data[i].estado);
+
+        }
+      })
+      .fail(function() {
+        console.log("error");
+      });
+    $(".act_cambios").click(actualizarest);
+
+  }
+
+
+  function inactivarusuario() {
+
+    var doc = $(this).parents("tr").find(".doc").text();
     $.ajax({
       url: '<?php echo base_url('/ModuloUsuarios/DesactivarUs'); ?>',
       type: 'POST',
@@ -84,7 +180,8 @@
           confirmButtonText: 'Aceptar',
 
         }).then((result) => {
-          window.location = '<?php echo base_url('/ModuloUsuarios/BuscarUsuarios'); ?>';
+
+          window.location = '<?php echo base_url('/ModuloUsuarios/BuscarInactivos'); ?>';
         })
       } else {
         alert('no funciona');
@@ -92,5 +189,5 @@
     }).fail(function() {
       alert("error al enviar ");
     });
-}
-</script>
+  }
+</script> -->
