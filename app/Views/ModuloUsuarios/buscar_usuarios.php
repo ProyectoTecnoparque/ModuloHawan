@@ -19,7 +19,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="" class="table table-bordered table-striped">
+              <table id="usuarios_activos" class="table table-bordered table-striped">
                 <thead>
                   <tr>
 
@@ -95,74 +95,20 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- FIN DE MODAL PARA MOSTRAR LOS DATOS DEL USUARIO ACTIVO -->
+
 <script>
-  $(document).ready( function () {
-    $('#usuarios_activos').DataTable();
-} );
-</script>
-<!-- <script>
   $(document).ready(iniciar);
 
   function iniciar() {
-    $('#usuarios_activos').DataTable({
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-      },
-      "responsive": true,
-      "autoWidth": false,
-      "ordering": true,
-      "aoColumnDefs": [{
-          'bSortable': false,
-          'aTargets': [4]
-        },
-        {
-          'bSortable': false,
-          'aTargets': [6]
-        },
-        {
-          'bSortable': false,
-          'aTargets': [7]
-        }
-      ],
-    });
-
-    $(".mod_estado").click(buscarporId);
     $(".desactivar").click(inactivarusuario);
-  }
-
-  function buscarporId() {
-    var doc = $(this).parents("tr").find(".doc").text();
-    $('#mod_editar').modal();
-    // var $estado = $(this).parents("tr").find(".td_estado").text();
-    // alert(doc);
-
-    $.ajax({
-        url: '<?php echo base_url('/ModuloUsuarios/BuscarusuId'); ?>',
-        type: 'POST',
-        dataType: "json",
-        data: {
-          doc: doc
-        },
-
-      }).done(function(data) {
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-          $('#documento_us').val(data[i].documento);
-          $('#estado_us').val(data[i].estado);
-
-        }
-      })
-      .fail(function() {
-        console.log("error");
-      });
-    $(".act_cambios").click(actualizarest);
-
   }
 
 
   function inactivarusuario() {
 
+
     var doc = $(this).parents("tr").find(".doc").text();
+    alert(doc)
     $.ajax({
       url: '<?php echo base_url('/ModuloUsuarios/DesactivarUs'); ?>',
       type: 'POST',
@@ -190,4 +136,4 @@
       alert("error al enviar ");
     });
   }
-</script> -->
+</script> 
