@@ -67,6 +67,7 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
     // Buscar y Editar datos generales del perfil 
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
+    
     $routes->add('EditarPerfil', 'PerfilUsuario::enviarnewdatos');
     
     //  Editar datos  de seguridad del perfil 

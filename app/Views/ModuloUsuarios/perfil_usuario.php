@@ -75,11 +75,6 @@
                               <label for="genero" class="form-label">Genero</label>
                               <input type="text" class="form-control" id="genero" name="genero" value="" disabled>
                             </div>
-
-                            <div class="col-md-4">
-                              <label for="telefono" class="form-label">telefono</label>
-                              <input type="text" class="form-control" id="telefono_edit" name="telefono_edit" value="" disabled>
-                            </div>
                             <div class="col-md-4">
                               <label for="direccion_edit" class="form-label">Direccion</label>
                               <input type="text" class="form-control" id="direccion_edit" name="direccion_edit" value="" disabled>
@@ -213,7 +208,6 @@
         $('#estado_edit').val(data[i].estado);
         $('#fecha_insert').val(data[i].fecha_insert);
         $('#genero').val(data[i].genero);
-        $('#telefono_edit').val(data[i].telefono);
         $('#direccion_edit').val(data[i].direccion);
         $('#departamento').val(data[i].nombre);
 

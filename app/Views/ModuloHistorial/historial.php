@@ -40,7 +40,7 @@
                   <tr>
                     <th>Id</th>
                     <th>Usuario</th>
-                    <th>Experiencia</th>
+                    <th>Nivel</th>
                     <th>Valor</th>
                     <th>fecha</th>
                   </tr>
