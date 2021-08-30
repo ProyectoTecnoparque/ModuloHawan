@@ -1,0 +1,1 @@
+SELECT *  FROM point_acum WHERE fecha_insert LIKE '%2021-08-30%'

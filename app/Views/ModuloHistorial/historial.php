@@ -24,6 +24,7 @@
                           <div class="input-group mb-2">
 
                             <label class=" mr-2">Fecha Inicio</label>
+                            
                             <input type="date" class="form-control mr-2" id="inicio" name="inicio">
 
                             <label class=" mr-2">Fecha Limite</label>
@@ -131,18 +132,15 @@
     $("#buscar_info").submit(function(event) {
       event.preventDefault();
       buscar_info();
-      
-      
-      
     });
   });
 
-
-  function buscar_info() {
+  function buscar_info(){
     $('#Historial').hide();
     $('#resultado_search').show();
+
     inicio = $('#inicio').val();
-    limite = $('#limite').val();
+ 
 
     console.log(inicio, limite)
 
@@ -151,21 +149,22 @@
         type: 'POST',
         dataType: "json",
         data: {
-          inicio: inicio,
-          limite: limite
+          inicio: inicio
+          
         }
-      }).done(function(data) {
-        console.log(data);
+      }).done(function(data='OK#SEARCH') {
+        console.log("funciona");
+
         for (var i = 0; i < data.length; i++) {
           $("#tbodyresultado").append('<tr>'+
           '<th>'+data[i].id +'</th>'+
           '<th>'+data[i].usuario_id +'</th>'+
           '<th>'+data[i].id_nivel +'</th>'+
           '<th>'+data[i].acum_point +'</th>'+
-          '<th>'+data[i].fecha_insert+'</th>');
+          '<th>'+data[i].fecha_insert+'</th>'+
+          '<tr>');
         }
-      })
-      .fail(function() {
+      }).fail(function(data='ERROR#SEARCH') {
         console.log("Error");
       });
   }
