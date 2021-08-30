@@ -103,7 +103,7 @@
     $(".desactivar").click(inactivarusuario);
   }
 
-  function inactivarusuario(){
+  function inactivarusuario() {
     var doc = $(this).parents("tr").find(".doc").text();
     console.log(doc);
     $.ajax({
@@ -123,7 +123,6 @@
           confirmButtonText: 'Aceptar',
 
         }).then((result) => {
-
           window.location = '<?php echo base_url('/ModuloUsuarios/BuscarInactivos'); ?>';
         })
       } else {
@@ -133,4 +132,4 @@
       alert("error al enviar ");
     });
   }
-</script> 
+</script>

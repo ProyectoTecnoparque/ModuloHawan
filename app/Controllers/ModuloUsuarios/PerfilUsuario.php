@@ -58,7 +58,8 @@ class PerfilUsuario extends BaseController
 			echo json_encode('ERROR#UPDATE');
 		}
 	}
-	public function password_edit(){
+	public function password_edit()
+	{
 
 		$usuarios = new UsuariosModel();
 		$id_perfil = $this->request->getPostGet('id_perfil');
@@ -78,5 +79,4 @@ class PerfilUsuario extends BaseController
 			echo json_encode('INVALID##PASSWORD');
 		}
 	}
-
 }

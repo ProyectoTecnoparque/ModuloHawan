@@ -34,7 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/Login', 'Inicio::index');
 $routes->get('/Inicio', 'Inicio::cargarVistaInicio');
 $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
- $routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
+$routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Historial', 'Historial::historial_expe');
@@ -50,7 +50,7 @@ $routes->get('/EditarNivel', 'Puntos::EditarNivel');
 $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios'], function ($routes) {
     // Registrar nuevo administrador
     // $routes->add('RegistrarAdministrador', 'RegistrarAdministrador::index');
-    
+
     $routes->add('RegistrarAdministrador', 'BuscarUsuarios::RegistrarAdministrador');
     // $routes->add('NuevoAdmin', 'BuscarUsuarios::NuevoAdmin');
 
@@ -68,23 +68,20 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
     $routes->add('ActualizarInac', 'BuscarInactivos::actualizarinac');
     $routes->add('RestaurarUsuario', 'BuscarInactivos::restaurarestado');
 
-     
+
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
     // Buscar y Editar datos generales del perfil 
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
 
     $routes->add('EditarPerfil', 'PerfilUsuario::enviarnewdatos');
-    
+
     //  Editar datos  de seguridad del perfil 
     $routes->add('PasswordPerfil', 'PerfilUsuario::password_edit');
-
-    
 });
 
 $routes->group('ModuloPuntos', ['namespace' => 'App\Controllers\ModuloPuntos'], function ($routes) {
     $routes->get('Puntos', 'Puntos::index');
     $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');
-
 });
 
 

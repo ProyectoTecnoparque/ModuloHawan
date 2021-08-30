@@ -20,20 +20,20 @@
                   <div class="row">
                     <div class="col-md-8 offset-md-2">
                       <form action="#" id="buscar_info" method="POST">
-                          <div class="modal-body">
-                              <div class="input-group mb-2">
+                        <div class="modal-body">
+                          <div class="input-group mb-2">
 
-                                  <label class=" mr-2">Fecha Inicio</label>
-                                  <input type="date" class="form-control mr-2" id="inicio" name="inicio">
+                            <label class=" mr-2">Fecha Inicio</label>
+                            <input type="date" class="form-control mr-2" id="inicio" name="inicio">
 
-                                  <label class=" mr-2">Fecha Limite</label>
-                                  <input type="date" class="form-control" id="limite" name="limite">
+                            <label class=" mr-2">Fecha Limite</label>
+                            <input type="date" class="form-control" id="limite" name="limite">
 
-                                  <button type="submit" class="btn btn-primary"> 
-                                          <span> <i class="fas fa-search mr-2"></i>Buscar</span>
-                                  </button>
-                              </div>
+                            <button type="submit" class="btn btn-primary">
+                              <span> <i class="fas fa-search mr-2"></i>Buscar</span>
+                            </button>
                           </div>
+                        </div>
                       </form>
                     </div>
                   </div>
@@ -41,7 +41,9 @@
               </section>
               <br>
               <br>
-              <table id="Historial" class="table table-bordered table-striped">
+
+
+              <table id="resultado_search" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Id</th>
@@ -51,14 +53,29 @@
                     <th>fecha</th>
                   </tr>
                 </thead>
+                <tbody id="tbodyresultado">
+                </tbody>
+              </table>
+
+
+              <table id="Historial" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th align="center">Id</th>
+                    <th align="center">Usuario</th>
+                    <th align="center">Nivel</th>
+                    <th align="center">Valor</th>
+                    <th align="center">fecha</th>
+                  </tr>
+                </thead>
                 <tbody id="tbodyusuarios">
                   <?php foreach ($datos as $dato) { ?>
                     <tr>
-                      <td><?php echo $dato['id']; ?></td>
-                      <td><?php echo $dato['usuario_id']; ?></td>
-                      <td><?php echo $dato['id_nivel']; ?></td>
-                      <td><?php echo $dato['acum_point']; ?></td>
-                      <td><?php echo $dato['fecha_insert']; ?></td>
+                      <td ><?php echo $dato['id']; ?></td>
+                      <td ><?php echo $dato['usuario_id']; ?></td>
+                      <td ><?php echo $dato['id_nivel']; ?></td>
+                      <td ><?php echo $dato['acum_point']; ?></td>
+                      <td ><?php echo $dato['fecha_insert']; ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
@@ -109,41 +126,47 @@
 
 
 <script>
-  $(document).ready(function(){
-         
-         $("#buscar_info").submit(function(event){
-            event.preventDefault();
-            buscar_info();
-         });
-      });
+  $(document).ready(function() {
+    $('#resultado_search').hide();
+    $("#buscar_info").submit(function(event) {
+      event.preventDefault();
+      buscar_info();
+      
+      
+      
+    });
+  });
 
 
   function buscar_info() {
+    $('#Historial').hide();
+    $('#resultado_search').show();
     inicio = $('#inicio').val();
     limite = $('#limite').val();
-    
-    console.log(inicio,limite)
+
+    console.log(inicio, limite)
 
     $.ajax({
         url: '<?php echo base_url('/Historial/BuscarDatos'); ?>',
         type: 'POST',
         dataType: "json",
         data: {
-          inicio:inicio,
-          limite:limite,
+          inicio: inicio,
+          limite: limite
         }
-
       }).done(function(data) {
         console.log(data);
         for (var i = 0; i < data.length; i++) {
-          $('#documento_edit').val(data[i].documento);
-          $('#estado_edit').val(data[i].estado);
+          $("#tbodyresultado").append('<tr>'+
+          '<th>'+data[i].id +'</th>'+
+          '<th>'+data[i].usuario_id +'</th>'+
+          '<th>'+data[i].id_nivel +'</th>'+
+          '<th>'+data[i].acum_point +'</th>'+
+          '<th>'+data[i].fecha_insert+'</th>');
         }
       })
       .fail(function() {
-        console.log("error");
+        console.log("Error");
       });
-
   }
-
 </script>

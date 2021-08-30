@@ -10,30 +10,18 @@ use App\Models\PuntosModel;
 
 class  Historial extends BaseController
 {
-      public function historial_expe2()
-      {
-            $punto_acum = new HistorialModel();
-            $acumulador = $punto_acum->findAll();
-            $data = ['datos' => $acumulador];
-
-            echo view('template/header');
-            echo view('ModuloHistorial/historial',$data);
-            echo view('template/footer');
-
-      }
-
       public function historial_expe()
       {
-            $punto_acum = new HistorialModel();
+            $historial = new HistorialModel();
             $id = $_SESSION['id'];
             $tipo_usuario = $_SESSION['tipo_usuario'];
 
             if ($tipo_usuario == "Administrador") {
-                  $consulta['datos'] = $punto_acum
+                  $consulta['datos'] = $historial
                         ->findAll();
             } else {
-                  $consulta['datos'] = $punto_acum
-                        ->where('usuario_id',$id)
+                  $consulta['datos'] = $historial
+                        ->where('usuario_id', $id)
                         ->findAll();
             }
 
@@ -41,17 +29,26 @@ class  Historial extends BaseController
             echo view('ModuloHistorial/historial', $consulta);
             echo view('template/footer');
       }
-      public function BuscarDatos(){
+      public function BuscarDatos()
+      {
             $historial = new HistorialModel();
-		$clave = $this->request->getPostGet('clave$clave');
-		$datos=$historial->select()->where('fecha', $clave)->countAll('acum_point');
+            $inicio = $this->request->getPostGet('inicio');
+            $limite = $this->request->getPostGet('limite');
 
-		if ($datos) {
-			$mensaje = "OK#UPDATE";
-		}else{
-			$mensaje = "NO#UPDATE";
-		}
+            // $datos=$historial->select()->where('fecha', $clave)->countAll('acum_point');
+            // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
 
-		echo $mensaje;
+            // $inicio = '2021-08-13';
+            // $limite = '2021-08-20';
+
+            $data = $historial->where('fecha_insert',$inicio. '"AND"' .$limite.'"');
+            
+            if ($data) {
+                  $mensaje = "OK#SEARCH";
+            } else {
+                  $mensaje = "ERROR#SEARCH";
+            }
+
+            echo $mensaje;
       }
 }
