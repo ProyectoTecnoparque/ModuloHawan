@@ -50,7 +50,7 @@ class PerfilUsuario extends BaseController
 		$direccion_edit = $this->request->getPostGet('direccion_edit');
 		$id_ciudad = $this->request->getPostGet('id_ciudad');
 
-		$data = $usuarios->set(['nombres' => $nombre_edit, 'apellidos' => $apellido_edit, 'direccion' => $direccion_edit, 'telefono' => $telefono_edit, 'id_ciudad' => $id_ciudad])->where('id', $id_perfil)->update();
+		$data = $usuarios->set(['nombres' => $nombre_edit, 'apellidos' => $apellido_edit, 'direccion' => $direccion_edit, 'id_ciudad' => $id_ciudad])->where('id', $id_perfil)->update();
 
 		if ($data) {
 			echo json_encode($data);

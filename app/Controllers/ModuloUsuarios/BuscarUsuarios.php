@@ -18,7 +18,6 @@ class BuscarUsuarios extends BaseController {
 		echo view('ModuloUsuarios/buscar_usuarios',$personas);
 		echo view('template/footer');
 	}
-
 	
 	public function RegistrarAdministrador(){
 

@@ -49,59 +49,63 @@
 <div class="modal fade" id="editarRango" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarRangoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
+          <form action="#" id="edit_nivel" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarRangoLabel">Editar Datos</h5>
+                    <button type="button" class="btn " data-bs-dismiss="modal" >X</button>
+                </div>
 
-            <div class="modal-header">
-                <h5 class="modal-title" id="editarRangoLabel">Editar Datos</h5>
-                <button type="button" class="btn " data-bs-dismiss="modal" >X</button>
-            </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="hidden" id="id_nivel">
+                        <input type="text" class="form-control" name="name_nivel" id="name_nivel" placeholder="Nombre del Nivel">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-certificate"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
 
-            <div class="modal-body">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="name_nivel" id="name_nivel" placeholder="Nombre del Nivel">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-certificate"></span>
+                        <input type="text" class="form-control" id="puntos_req" name="puntos_req" placeholder="Ingrese el nuevo datos">
+                        <div class="input-group-append mr-2">
+                            <div class="input-group-text">
+                                <span> <i class="fas fa-coins"></i></span>
+
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="val_puntos" name="val_puntos" placeholder="Ingrese el nuevo datos">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-hand-holding-usd"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="input-group mb-4">
-
-                    <input type="text" class="form-control" id="puntos_req" name="puntos_req" placeholder="Ingrese el nuevo datos">
-                    <div class="input-group-append mr-2">
-                        <div class="input-group-text">
-                            <span> <i class="fas fa-coins"></i></span>
-
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" id="val_puntos" name="val_puntos" placeholder="Ingrese el nuevo datos">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-hand-holding-usd"></span>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="su" class="btn btn-primary">Guardar</button>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
-            </div>
+            </form>
         </div>
 
     </div>
 </div>
 
 <script>
+
+    $(document).ready(function(){     
+        $("#edit_nivel").submit(function(event){
+            event.preventDefault();
+            EditarNivel();
+        });
+
+        $(".edit_nivel").click(detalle_nivel);
+    });
   
-  $(document).ready(iniciar);
-
-   function iniciar(){
-    // alert('funciona')
-    $(".edit_nivel").click(detalle_nivel);
-   }
-
    function detalle_nivel(){
       var nivel = $(this).parents("tr").find(".nivel").text();
-      console.log(nivel);
+    //   console.log(nivel);
 
     $.ajax({
       url: '<?php echo base_url('/Puntos/BuscarNivel'); ?>',
@@ -112,6 +116,7 @@
       }
     }).done(function(data) {
       for (var i = 0; i < data.length; i++) {
+        $('#id_nivel').val(data[i].id);
         $('#name_nivel').val(data[i].Nivel);
         $('#puntos_req').val(data[i].puntos);
         $('#val_puntos').val(data[i].valor);
@@ -119,8 +124,48 @@
       }
     }).fail(function(data) {
       console.log(data)
-    });
+    });   
+   } 
+   function EditarNivel(){
+       id_nivel=$('#id_nivel').val();
+       name_nivel=$('#name_nivel').val();
+       puntos_req=$('#puntos_req').val();
+       val_puntos=$('#val_puntos').val();
        
+       console.log(id_nivel,name_nivel,puntos_req,val_puntos)
+       
+
+      $.ajax({
+        url: '<?php echo base_url('/Puntos/EditarNivel'); ?>',
+        type: 'POST',
+        dataType: "json",
+        data: {
+            id_nivel:id_nivel,
+            name_nivel:name_nivel,
+            puntos_req:puntos_req,
+            val_puntos:val_puntos,
+      }
+    }).done(function(data) {
+      if (data) {
+        Swal.fire({
+          text: "Se ha modificado correctamente el nivel",
+          icon: 'success',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Aceptar',
+
+        }).then((result) =>{
+          window.location = '<?php echo base_url('/Puntos'); ?>';
+        })
+      } else {
+        alert('no funciona');
+      }
+    }).fail(function() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Se ha generado un problema al enviar los nuevos datos.'
+        })
+    });
    } 
     
 </script>

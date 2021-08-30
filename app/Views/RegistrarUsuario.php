@@ -24,7 +24,7 @@ if (isset($_SESSION['tipo_usuario'])) {
    <!-- icheck bootstrap -->
    <link rel="stylesheet" href="<?php echo base_url('public/plugins/icheck-bootstrap/icheck-bootstrap.min.css') ?>">
    <!-- Theme style -->
-   <link rel="stylesheet" href="<?php echo base_url('public/dist/css/adminlte.min.css') ?>">
+<link rel="stylesheet" href="<?php echo base_url('public/dist/css/adminlte.min.css') ?>">
 </head>
 
 <body>

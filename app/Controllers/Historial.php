@@ -22,18 +22,14 @@ class  Historial extends BaseController
 
       }
 
-
-       public function historial_expe()
+      public function historial_expe()
       {
             $punto_acum = new HistorialModel();
-
-
             $id = $_SESSION['id'];
             $tipo_usuario = $_SESSION['tipo_usuario'];
 
             if ($tipo_usuario == "Administrador") {
                   $consulta['datos'] = $punto_acum
-                   ->where('usuario_id',$id)
                         ->findAll();
             } else {
                   $consulta['datos'] = $punto_acum
@@ -44,5 +40,18 @@ class  Historial extends BaseController
             echo view('template/header');
             echo view('ModuloHistorial/historial', $consulta);
             echo view('template/footer');
+      }
+      public function BuscarDatos(){
+            $historial = new HistorialModel();
+		$clave = $this->request->getPostGet('clave$clave');
+		$datos=$historial->select()->where('fecha', $clave)->countAll('acum_point');
+
+		if ($datos) {
+			$mensaje = "OK#UPDATE";
+		}else{
+			$mensaje = "NO#UPDATE";
+		}
+
+		echo $mensaje;
       }
 }

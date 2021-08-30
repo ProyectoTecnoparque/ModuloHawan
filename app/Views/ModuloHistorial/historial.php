@@ -19,15 +19,21 @@
                   <h2 class="text-center display-4">Buscar</h2>
                   <div class="row">
                     <div class="col-md-8 offset-md-2">
-                      <form >
-                        <div class="input-group">
-                          <input type="search" class="form-control form-control-lg" placeholder="Ingrese el usuario o fecha de busqueda">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-lg btn-default">
-                              <i class="fa fa-search"></i>
-                            </button>
+                      <form action="#" id="buscar_info" method="POST">
+                          <div class="modal-body">
+                              <div class="input-group mb-2">
+
+                                  <label class=" mr-2">Fecha Inicio</label>
+                                  <input type="date" class="form-control mr-2" id="inicio" name="inicio">
+
+                                  <label class=" mr-2">Fecha Limite</label>
+                                  <input type="date" class="form-control" id="limite" name="limite">
+
+                                  <button type="submit" class="btn btn-primary"> 
+                                          <span> <i class="fas fa-search mr-2"></i>Buscar</span>
+                                  </button>
+                              </div>
                           </div>
-                        </div>
                       </form>
                     </div>
                   </div>
@@ -35,7 +41,7 @@
               </section>
               <br>
               <br>
-              <table id="usuarios_inactivos" class="table table-bordered table-striped">
+              <table id="Historial" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Id</th>
@@ -103,46 +109,28 @@
 
 
 <script>
-  $(document).ready(iniciar);
-
-  function iniciar() {
-    $('#usuarios_inactivos').DataTable({
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-      },
-      "responsive": true,
-      "autoWidth": false,
-      "ordering": true,
-      "aoColumnDefs": [{
-          'bSortable': false,
-          'aTargets': [1]
-        },
-        {
-          'bSortable': false,
-          'aTargets': [6]
-        },
-        {
-          'bSortable': false,
-          'aTargets': [7]
-        }
-      ],
-    });
-    $(".mod_edit").click(buscarinacId);
-    $(".activar").click(restaurarestado);
-  }
+  $(document).ready(function(){
+         
+         $("#buscar_info").submit(function(event){
+            event.preventDefault();
+            buscar_info();
+         });
+      });
 
 
-  function buscarinacId() {
-    var docum = $(this).parents("tr").find(".doc_in").text();
-    $('#mod_inactivos').modal();
-
+  function buscar_info() {
+    inicio = $('#inicio').val();
+    limite = $('#limite').val();
+    
+    console.log(inicio,limite)
 
     $.ajax({
-        url: '<?php echo base_url('/ModuloUsuarios/BuscarInacId'); ?>',
+        url: '<?php echo base_url('/Historial/BuscarDatos'); ?>',
         type: 'POST',
         dataType: "json",
         data: {
-          docum: docum
+          inicio:inicio,
+          limite:limite,
         }
 
       }).done(function(data) {
@@ -158,34 +146,4 @@
 
   }
 
-  function restaurarestado() {
-
-    var doc = $(this).parents("tr").find(".doc_in").text();
-    $.ajax({
-      url: '<?php echo base_url('/ModuloUsuarios/RestaurarUsuario'); ?>',
-      type: 'POST',
-      dataType: "text",
-      data: {
-        doc: doc
-      },
-
-    }).done(function(data) {
-      if (data == "OK#UPDATE") {
-        Swal.fire({
-          text: "Se ha modificado el estado del Usuario",
-          icon: 'success',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Aceptar',
-
-        }).then((result) => {
-
-          window.location = '<?php echo base_url('/ModuloUsuarios/BuscarUsuarios'); ?>';
-        })
-      } else {
-        alert('no funciona');
-      }
-    }).fail(function() {
-      alert("error al enviar ");
-    });
-  }
 </script>

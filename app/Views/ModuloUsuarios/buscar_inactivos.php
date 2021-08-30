@@ -97,31 +97,9 @@
   $(document).ready(iniciar);
 
   function iniciar() {
-    $('#usuarios_inactivos').DataTable({
-      "language": {
-        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
-      },
-      "responsive": true,
-      "autoWidth": false,
-      "ordering": true,
-      "aoColumnDefs": [{
-          'bSortable': false,
-          'aTargets': [1]
-        },
-        {
-          'bSortable': false,
-          'aTargets': [6]
-        },
-        {
-          'bSortable': false,
-          'aTargets': [7]
-        }
-      ],
-    });
     $(".mod_edit").click(buscarinacId);
     $(".activar").click(restaurarestado);
   }
-
 
   function buscarinacId() {
     var docum = $(this).parents("tr").find(".doc_in").text();
@@ -148,10 +126,10 @@
       });
 
   }
-
   function restaurarestado() {
 
     var doc = $(this).parents("tr").find(".doc_in").text();
+    alert(doc)
     $.ajax({
       url: '<?php echo base_url('/ModuloUsuarios/RestaurarUsuario'); ?>',
       type: 'POST',

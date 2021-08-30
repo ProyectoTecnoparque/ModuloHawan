@@ -103,12 +103,9 @@
     $(".desactivar").click(inactivarusuario);
   }
 
-
-  function inactivarusuario() {
-
-
+  function inactivarusuario(){
     var doc = $(this).parents("tr").find(".doc").text();
-    alert(doc)
+    console.log(doc);
     $.ajax({
       url: '<?php echo base_url('/ModuloUsuarios/DesactivarUs'); ?>',
       type: 'POST',

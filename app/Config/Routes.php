@@ -37,9 +37,13 @@ $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
  $routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
+$routes->get('/Historial', 'Historial::historial_expe');
+$routes->get('/BuscarDatos', 'Historial::BuscarDatos');
+
+//modulo de Puntos
 $routes->get('/Puntos', 'Puntos::index');
 $routes->get('/BuscarNivel', 'Puntos::BuscarNivel');
-$routes->get('/Historial', 'Historial::historial_expe');
+$routes->get('/EditarNivel', 'Puntos::EditarNivel');
 
 
 // Rutas para el modulo de GestionUsuarios
