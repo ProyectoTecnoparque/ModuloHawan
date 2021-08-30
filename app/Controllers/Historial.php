@@ -33,6 +33,7 @@ class  Historial extends BaseController
 
             if ($tipo_usuario == "Administrador") {
                   $consulta['datos'] = $punto_acum
+                   ->where('usuario_id',$id)
                         ->findAll();
             } else {
                   $consulta['datos'] = $punto_acum

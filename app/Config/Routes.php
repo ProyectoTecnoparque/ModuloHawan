@@ -38,6 +38,7 @@ $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Puntos', 'Puntos::index');
+$routes->get('/BuscarNivel', 'Puntos::BuscarNivel');
 $routes->get('/Historial', 'Historial::historial_expe');
 
 
@@ -67,7 +68,7 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
     // Buscar y Editar datos generales del perfil 
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
-    
+
     $routes->add('EditarPerfil', 'PerfilUsuario::enviarnewdatos');
     
     //  Editar datos  de seguridad del perfil 

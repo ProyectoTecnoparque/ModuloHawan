@@ -91,14 +91,36 @@
 </div>
 
 <script>
-    $(document).ready(iniciar);
-       function iniciar(){
-        var nivel = $(this).parents("tr").find(".nivel").val();
-        $('.edit_nivel').modal();
+  
+  $(document).ready(iniciar);
 
-        
-     
-     }
+   function iniciar(){
+    // alert('funciona')
+    $(".edit_nivel").click(detalle_nivel);
+   }
+
+   function detalle_nivel(){
+      var nivel = $(this).parents("tr").find(".nivel").text();
+      console.log(nivel);
+
+    $.ajax({
+      url: '<?php echo base_url('/Puntos/BuscarNivel'); ?>',
+      type: 'POST',
+      dataType: "json",
+      data: {
+        nivel: nivel,
+      }
+    }).done(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        $('#name_nivel').val(data[i].Nivel);
+        $('#puntos_req').val(data[i].puntos);
+        $('#val_puntos').val(data[i].valor);
+       
+      }
+    }).fail(function(data) {
+      console.log(data)
+    });
+       
+   } 
+    
 </script>
-
-<!-- /.container-fluid  Fin Modal-->

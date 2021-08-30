@@ -10,8 +10,8 @@ class Puntos extends BaseController
       public function index()
       {
             //echo view('Puntos/acum_puntos',$data);
-            $punto_acum = new PuntosModel();
-            $acumulador = $punto_acum->findAll();
+            $puntolevel= new PuntosModel();
+            $acumulador = $puntolevel->findAll();
             $data = ['datos' => $acumulador];
 
             echo view('template/header');
@@ -21,16 +21,16 @@ class Puntos extends BaseController
 
       public function BuscarNivel()
       {
-      $punto_acum = new PuntosModel();
-      $id = $this->request->getPostGet('doc');
+      $puntolevel= new PuntosModel();
+      $nivel = $this->request->getPostGet('nivel');
 
-      $punto_nivel = $punto_acum->where(['id' => $id])->find();
-
-      $data=['datos' => $punto_nivel];
+      $punto_nivel = $puntolevel->where(['id' => $nivel])->find();
 		
-		echo view('template/header',);
-		echo view('',$data);
-		echo view('template/footer');
+		if ($punto_nivel) {
+                  echo json_encode($punto_nivel);
+            } else {
+                  echo json_encode('ERROR#UPDATE');
+            }
 
 
 
