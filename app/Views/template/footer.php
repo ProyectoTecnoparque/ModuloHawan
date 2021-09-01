@@ -53,7 +53,6 @@
 <script src="<?php echo base_url('/public/dist/js/tableExport/tableExport.js'); ?>"></script>
 <script src="<?php echo base_url('/public/dist/js/tableExport/tableExport.min.js'); ?>"></script>
 
-
 <script src="<?php echo base_url('/public/dist/js/custom_export.js'); ?>"></script> 
 <script src="<?php echo base_url('/public/plugins/toastr/toastr.min.js'); ?>"></script>
 

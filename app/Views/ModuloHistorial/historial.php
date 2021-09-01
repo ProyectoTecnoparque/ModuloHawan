@@ -65,7 +65,7 @@
 
               <a href="<?php echo base_url('/Historial/ImprimirCSV') ?>" class="btn  bg-danger mr-4" target="_blank">Descargar excel</a> 
 
-              <table id="Historial" class="table table-bordered table-striped">
+              <table id="data_table" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th align="center">Id</th>
@@ -87,25 +87,7 @@
                   <?php } ?>
                 </tbody>
 
-                <?php 
-                if(isset($_POST["export_data"])) {
-                  $filename = "phpzag_data_export_".date('Ymd') . ".xls";
-                  header("Content-Type: application/vnd.ms-excel");
-                  header("Content-Disposition: attachment; filename=".$filename."");
-                  $show_coloumn = false;
-                  if(!empty($developer_records)) {
-                  foreach($developer_records as $record) {
-                  if(!$show_coloumn) {
-                  // display field/column names in first row
-                  echo implode("t", array_keys($record)) . "n";
-                  $show_coloumn = true;
-                  }
-                  echo implode("t", array_values($record)) . "n";
-                  }
-                  }
-                  exit;
-                  }
-                ?>
+              
               
               </table>
             </div>
