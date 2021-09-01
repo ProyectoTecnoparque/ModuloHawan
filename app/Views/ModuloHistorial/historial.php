@@ -39,7 +39,7 @@
                     </div>
                   </div>
                 </div>
-              </section>
+               </section>
               <br>
               <br>
 
@@ -140,6 +140,7 @@
     $('#resultado_search').show();
 
     inicio = $('#inicio').val();
+    // limite = $('#limite').val();
  
 
     console.log(inicio, limite)
@@ -152,7 +153,7 @@
           inicio: inicio
           
         }
-      }).done(function(data='OK#SEARCH') {
+      }).done(function(data) {
         console.log("funciona");
 
         for (var i = 0; i < data.length; i++) {
@@ -164,7 +165,7 @@
           '<th>'+data[i].fecha_insert+'</th>'+
           '<tr>');
         }
-      }).fail(function(data='ERROR#SEARCH') {
+      }).fail(function(data) {
         console.log("Error");
       });
   }
