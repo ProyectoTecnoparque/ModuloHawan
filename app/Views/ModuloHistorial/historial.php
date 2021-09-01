@@ -160,8 +160,9 @@
         }
       }).done(function(data) {
         console.log("funciona");
-       if (data) {
+      
         for (var i = 0; i < data.length; i++) {
+           if (data) {
           $("#tbodyresultado").append('<tr>'+
           '<th>'+data[i].id +'</th>'+
           '<th>'+data[i].usuario_id +'</th>'+
@@ -169,10 +170,14 @@
           '<th>'+data[i].acum_point +'</th>'+
           '<th>'+data[i].fecha_insert+'</th>'+
           '<tr>');
-        }
        }else{
         $("#tbodyresultado").empty();
        }
+
+        }
+
+
+      
         
 
       }).fail(function(data) {
