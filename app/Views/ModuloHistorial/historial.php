@@ -90,39 +90,7 @@
   </div><!-- /.content-header -->
 </div>
 
-<!-- INICIO DEL MODAL CON LOS DATOS DE LOS USUARIOS INACTIVOS -->
-<div class="modal fade " id="mod_inactivos">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Editar Datos Usuarios</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Documento</label>
-          <input type="email" class="form-control" id="documento_edit" name="documento_edit" disabled="">
-        </div>
-        <div class="form-group">
-          <label>Estado</label>
-          <select class="form-control" name="estado_edit">
-            <option selected>Seleccione el nuevo estado</option>
-            <option value="ACTIVO">Activo</option>
-            <option value="PENDIENTE">Pendiente</option>
-          </select>
-        </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Guardar cambios</button>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
+
 <!-- FIN DEL MODAL CON LOS DATOS DE LOS USUARIOS INACTIVOS
 // $(document).ready(iniciar);
 
@@ -136,7 +104,6 @@
     $('#resultado_search').hide();
     $("#buscar_info").submit(function(event) {
       event.preventDefault();
-
       buscar_info();
     });
   });
@@ -145,7 +112,7 @@
     $('#Historial').hide();
     $('#resultado_search').show();
     inicio = $('#inicio').val();
-    // limite = $('#limite').val();
+    limite = $('#limite').val();
   
 
     console.log(inicio, limite)
@@ -155,33 +122,25 @@
         type: 'POST',
         dataType: "json",
         data: {
-          inicio: inicio
+          inicio: inicio,
+          limite:limite
           
         }
       }).done(function(data) {
         console.log("funciona");
       
         for (var i = 0; i < data.length; i++) {
-           if (data) {
+
           $("#tbodyresultado").append('<tr>'+
           '<th>'+data[i].id +'</th>'+
           '<th>'+data[i].usuario_id +'</th>'+
           '<th>'+data[i].id_nivel +'</th>'+
           '<th>'+data[i].acum_point +'</th>'+
-          '<th>'+data[i].fecha_insert+'</th>'+
+          '<th>'+data[i].fecha_insert+'</th>'+  
           '<tr>');
-       }else{
-        $("#tbodyresultado").empty();
-       }
-
         }
-
-
-      
-        
-
-      }).fail(function(data) {
-        console.log("Error");
-      });
+        }).fail(function(data) {
+            console.log("Error");
+        });
   }
 </script>

@@ -31,16 +31,24 @@ class  Historial extends BaseController
       }
       public function BuscarDatos()
       {
-            $historial = new HistorialModel();
+            $db = new HistorialModel();
             $inicio = $this->request->getPostGet('inicio');
-            // $limite = $this->request->getPostGet(('limite');
+            $limite = $this->request->getPostGet('limite');
             
-            // $search = $inicio;
-            // $data = "SELECT * FROM point_acum WHERE fecha_insert LIKE '%" .
-            // $db->escapeLikeString($search) . "%' ESCAPE '!'";
+            $search = $inicio;
+            $data = "SELECT * FROM point_acum WHERE fecha_insert LIKE '%" . $db->escapeLikeString($search) . "%' ESCAPE '!'";
 
 
-            $data=$historial->select()->where('fecha_insert', $inicio)->findAll();
+            //  $data=$historial->select()->where('fecha_insert', $inicio)->findAll();
+
+            // $data=$historial->where('fecha_insert BETWEEN',$inicio. '"AND"' .$limite.'"')->findAll();
+            // $data= "SELECT '$historial' FROM point_acum WHERE  fecha_insert= '$inicio";
+
+
+            // SELECT * FROM students 
+            // INNER JOIN inscritos ON inscritos.id_student = students.id_students 
+            // INNER JOIN pagos_estudiantes ON pagos_estudiantes.id_inscripcion =  inscritos.id 
+            // WHERE CAST(pagos_estudiantes.fecha_a_pagar AS DATETIME) BETWEEN '$fecha' AND '$dato2';
            
 
             
