@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
 use App\Models\DepartamentosModel;
+use App\Models\HistorialModel;
 
 class PerfilUsuario extends BaseController
 {
@@ -79,4 +80,21 @@ class PerfilUsuario extends BaseController
 			echo json_encode('INVALID##PASSWORD');
 		}
 	}
+
+
+	public function NivelUsuario(){
+
+		$id = $_SESSION['id'];
+		$usuarios = new HistorialModel();
+		$data = $usuarios->where('usuario_id',$id)->countAll();
+
+		if ($data) {
+                  echo json_encode($data);
+            } else {
+                  echo json_encode('error no encontrado');
+            }
+
+	}
+
+
 }

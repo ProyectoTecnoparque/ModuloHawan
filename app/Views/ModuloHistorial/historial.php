@@ -27,8 +27,8 @@
                             
                             <input type="date" class="form-control mr-2" id="inicio" name="inicio">
 
-                            <label class=" mr-2">Fecha Limite</label>
-                            <input type="date" class="form-control" id="limite" name="limite">
+                            <!-- <label class=" mr-2">Fecha Limite</label>
+                            <input type="date" class="form-control" id="limite" name="limite"> -->
 
                             <button type="submit" class="btn btn-primary">
                               <span> <i class="fas fa-search mr-2"></i>Buscar</span>
@@ -43,7 +43,7 @@
               <br>
               <br>
 
-
+            
               <table id="resultado_search" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -58,6 +58,12 @@
                 </tbody>
               </table>
 
+              <!-- <form action="" method="post">
+                <button type="submit" id="export_data" name='export_data' value="Export to excel" class="btn btn-info">Export to excel</button>
+              </form> -->
+
+
+              <a href="<?php echo base_url('/Historial/ImprimirCSV') ?>" class="btn  bg-danger mr-4" target="_blank">Descargar excel</a> 
 
               <table id="Historial" class="table table-bordered table-striped">
                 <thead>
@@ -80,6 +86,27 @@
                     </tr>
                   <?php } ?>
                 </tbody>
+
+                <?php 
+                if(isset($_POST["export_data"])) {
+                  $filename = "phpzag_data_export_".date('Ymd') . ".xls";
+                  header("Content-Type: application/vnd.ms-excel");
+                  header("Content-Disposition: attachment; filename=".$filename."");
+                  $show_coloumn = false;
+                  if(!empty($developer_records)) {
+                  foreach($developer_records as $record) {
+                  if(!$show_coloumn) {
+                  // display field/column names in first row
+                  echo implode("t", array_keys($record)) . "n";
+                  $show_coloumn = true;
+                  }
+                  echo implode("t", array_values($record)) . "n";
+                  }
+                  }
+                  exit;
+                  }
+                ?>
+              
               </table>
             </div>
             <!-- /.card-body -->

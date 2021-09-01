@@ -10,6 +10,16 @@ use App\Models\PuntosModel;
 
 class  Historial extends BaseController
 {
+
+      public function __construct(){ 
+                  
+            // Models         
+              
+            // Libraries         
+            
+          }
+
+
       public function historial_expe()
       {
             $historial = new HistorialModel();
@@ -47,6 +57,23 @@ class  Historial extends BaseController
                   echo json_encode('error no encontrado');
             }
       }
+      
+       public function ImprimirCSV(){
+            $this->excel->setActiveSheetIndex(0);         
+            $this->excel->getActiveSheet()->setTitle('test worksheet');         
+            $this->excel->getActiveSheet()->setCellValue('A1', 'Un poco de texto');         
+            $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(20);         
+            $this->excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(true);         
+            $this->excel->getActiveSheet()->mergeCells('A1:D1');           
+        
+            header('Content-Type: application/vnd.ms-excel');         
+            header('Content-Disposition: attachment;filename="nombredelfichero.xls"');
+            header('Cache-Control: max-age=0'); //no cache         
+            $objWriter = PHPExcel_IOFactory::createWriter($this->excel, 'Excel5');         
+            
+            // Forzamos a la descarga         
+            $objWriter->save('php://output');
+          }
 
 
     

@@ -38,6 +38,10 @@ $routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Historial', 'Historial::historial_expe');
+$routes->get('/ImprimirCSV', 'Historial::ImprimirCSV');
+
+
+
 $routes->get('/BuscarDatos', 'Historial::BuscarDatos');
 
 //modulo de Puntos
@@ -72,6 +76,8 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
 
 
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
+
+    $routes->add('PerfilUsuario', 'PerfilUsuario::NivelUsuario');
     // Buscar y Editar datos generales del perfil 
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
 

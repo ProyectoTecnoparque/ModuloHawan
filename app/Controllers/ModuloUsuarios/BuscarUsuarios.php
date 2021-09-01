@@ -117,7 +117,6 @@ class BuscarUsuarios extends BaseController
 
 	public function CantidadUsuarios(){
 		$usuarios = new UsuariosModel();
-		$doc = $this->request->getPostGet('doc');
 		$data = $usuarios->where('estado', 'Activo')->countAll();
 
 		if ($data) {
