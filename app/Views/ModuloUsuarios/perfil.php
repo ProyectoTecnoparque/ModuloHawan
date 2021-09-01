@@ -78,7 +78,8 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">Número de Usarios</span>
-                <span class="info-box-number" id="usuarios"></span>
+                <span class="info-box-number" id="
+                usuarios"></span>
               </div>
               <!-- /.info-box-content -->
             </div>
