@@ -24,7 +24,7 @@ INSERT INTO `departamentos` (`id_depa`, `nombre`) VALUES
 /*!40000 ALTER TABLE `point_acum` DISABLE KEYS */;
 INSERT INTO `point_acum` (`id`, `usuario_id`, `acum_point`, `id_nivel`, `fecha_insert`) VALUES
 	(1, 3, 600, 3, '2021-08-20 00:00:00'),
-	(2, 5, 600, 4, '2021-08-13 00:00:00'),
+	(2, 9, 700, 4, '2021-08-13 00:00:00'),
 	(3, 10, 300, 2, '2021-08-30 00:00:00');
 /*!40000 ALTER TABLE `point_acum` ENABLE KEYS */;
 
