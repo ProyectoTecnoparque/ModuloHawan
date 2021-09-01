@@ -8,6 +8,9 @@ use App\Models\UsuariosModel;
 use App\Models\PuntosModel;
 use PHPExcel_IOFactory;
 
+
+      
+
 class  Historial extends BaseController
 {
 

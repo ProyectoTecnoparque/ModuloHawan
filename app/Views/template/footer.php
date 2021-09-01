@@ -48,6 +48,13 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="<?php echo base_url('/public/dist/js/pages/dashboard.js'); ?>"></script> -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="<?php echo base_url('/public/dist/js/TableExport.js'); ?>"></script>
+
+<script type="text/javascript" src="tableExport/jquery.base64.js"></script>
+<script src="<?php echo base_url('/public/dist/js/custom_export.js'); ?>"></script> 
+
 <script src="<?php echo base_url('/public/plugins/toastr/toastr.min.js'); ?>"></script>
 </body>
 
