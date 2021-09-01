@@ -73,35 +73,24 @@ class  Historial extends BaseController
 
     
 }
+       
+
+      // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
+
+      // 
+      // $limite = '2021-08-20';
+
+      //$data=$historial->where('fecha_insert BETWEEN "'. date('Y-m-d', strtotime($inicio)). '" AND "'. date('Y-m-d', strtotime($limite)).'"');
+
+      
+      // $historial = "SELECT fecha_insert FROM point_acum WHERE acum_point LIKE '%" .
+      // $data=$historial->escapeLikeString($inicio) . "%' ESCAPE '!'";
 
 
+            // $data = $historial->where('fecha_insert',$fecha_inicio);
+      // $data = $historial->where('fecha_insert BETWEEN',$inicio. '"AND"' .$limite.'"')->findAll();
+      
+      // SELECT * FROM point_acum WHERE fecha_insert >= DATE_FORMAT('2021-08-13',"%Y-%m-%d") AND  fecha_insert <= DATE_FORMAT('2021-08-30',"%Y-%m-%d")
 
-      // $data=$historial->where('fecha_insert BETWEEN',$inicio. '"AND"' .$limite.'"')->findAll();
-      // $data= "SELECT '$historial' FROM point_acum WHERE  fecha_insert= '$inicio";
-
-
-      // SELECT * FROM students 
-      // INNER JOIN inscritos ON inscritos.id_student = students.id_students 
-      // INNER JOIN pagos_estudiantes ON pagos_estudiantes.id_inscripcion =  inscritos.id 
-      // WHERE CAST(pagos_estudiantes.fecha_a_pagar AS DATETIME) BETWEEN '$fecha' AND '$dato2';
-            
-
-          // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
-
-            // 
-            // $limite = '2021-08-20';
-
-           //$data=$historial->where('fecha_insert BETWEEN "'. date('Y-m-d', strtotime($inicio)). '" AND "'. date('Y-m-d', strtotime($limite)).'"');
-
-           
-            // $historial = "SELECT fecha_insert FROM point_acum WHERE acum_point LIKE '%" .
-            // $data=$historial->escapeLikeString($inicio) . "%' ESCAPE '!'";
-
-
-             // $data = $historial->where('fecha_insert',$fecha_inicio);
-            // $data = $historial->where('fecha_insert BETWEEN',$inicio. '"AND"' .$limite.'"')->findAll();
-            
-            // SELECT * FROM point_acum WHERE fecha_insert >= DATE_FORMAT('2021-08-13',"%Y-%m-%d") AND  fecha_insert <= DATE_FORMAT('2021-08-30',"%Y-%m-%d")
-
-            // $data= "SELECT * FROM point_acum WHERE  fecha_insert= '$fecha_inicio";
-            // "SELECT * FROM  WHERE fecha_insert >='.DATE_FORMAT($fecha_inicio,'%Y-%m-%d').'";
+      // $data= "SELECT * FROM point_acum WHERE  fecha_insert= '$fecha_inicio";
+      // "SELECT * FROM  WHERE fecha_insert >='.DATE_FORMAT($fecha_inicio,'%Y-%m-%d').'";
