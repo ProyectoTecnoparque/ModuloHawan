@@ -6,20 +6,12 @@ use App\Controllers\BaseController;
 use App\Models\HistorialModel;
 use App\Models\UsuariosModel;
 use App\Models\PuntosModel;
-
+use PHPExcel_IOFactory;
 
 class  Historial extends BaseController
 {
 
-      public function __construct(){ 
-                  
-            // Models         
-              
-            // Libraries         
-            
-          }
-
-
+   
       public function historial_expe()
       {
             $historial = new HistorialModel();
@@ -80,26 +72,6 @@ class  Historial extends BaseController
 }
 
 
-
-
-
-
-
-
-
-  //    public function BuscarDatos()
-      // {
-      //       $usuarios = new HistorialModel();
-      //       $id_perfil = $this->request->getPostGet('inicio');
-      //       $data = $usuarios
-      //             ->where('usuario_id', $id_perfil)
-      //             ->findAll();
-      //       if ($data) {
-      //             echo json_encode($data);
-      //       } else {
-      //             echo json_encode('error no encontrado');
-      //       }
-      // }
 
       // $data=$historial->where('fecha_insert BETWEEN',$inicio. '"AND"' .$limite.'"')->findAll();
       // $data= "SELECT '$historial' FROM point_acum WHERE  fecha_insert= '$inicio";
