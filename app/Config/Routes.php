@@ -68,6 +68,8 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
     $routes->add('ActualizarInac', 'BuscarInactivos::actualizarinac');
     $routes->add('RestaurarUsuario', 'BuscarInactivos::restaurarestado');
 
+    $routes->add('CantidadUsuarios', 'BuscarUsuarios::CantidadUsuarios');
+
 
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
     // Buscar y Editar datos generales del perfil 

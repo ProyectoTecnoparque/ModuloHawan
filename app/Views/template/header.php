@@ -11,7 +11,7 @@ if (!isset($_SESSION['tipo_usuario'])) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Inicio Hawah</title>
-  <link rel="icon" href="<?php echo base_url('public/dist/img/travel.png'); ?>" type="image/ico" />
+  <link rel="icon" href="<?php echo base_url('public/dist/img/TRAVELL.png'); ?>" type="image/ico" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="<?php echo base_url('/public/dist/css/font.css'); ?>">

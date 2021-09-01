@@ -113,4 +113,18 @@ class BuscarUsuarios extends BaseController
 		}
 		echo $mensaje;
 	}
+
+
+	public function CantidadUsuarios(){
+		$usuarios = new UsuariosModel();
+		$doc = $this->request->getPostGet('doc');
+		$data = $usuarios->where('estado', 'Activo')->countAll();
+
+		if ($data) {
+                  echo json_encode($data);
+            } else {
+                  echo json_encode('error no encontrado');
+            }
+
+	}
 }

@@ -113,9 +113,8 @@
     $('#resultado_search').show();
     inicio = $('#inicio').val();
     limite = $('#limite').val();
-  
 
-    console.log(inicio, limite)
+    //console.log(inicio, limite)
 
     $.ajax({
         url: '<?php echo base_url('/Historial/BuscarDatos'); ?>',

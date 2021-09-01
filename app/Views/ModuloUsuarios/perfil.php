@@ -77,8 +77,8 @@
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-text">Número de Usarios</span>
+                <span class="info-box-number" id="usuarios"></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -245,38 +245,11 @@
       type: 'POST',
       dataType: 'text',
       success:function (data) {
-        $("#n_usuarios").text(data);
+        $("#usuarios").text(data);
       }
       
     });
-    //  Cantidad de usuarios Pendientes
-    $.ajax({
-      url: '<?php echo base_url('/ModuloUsuarios/CantidadPendientes');?>',
-      type: 'POST',
-      dataType: 'text',
-      success:function (data) {
-        $("#pendientes").text(data);
-      }
-      
-    });
-  
-  
-    //  Cantidad de pedidos activos
-
-    id_usuario = '<?php echo $_SESSION['id'] ?>';
-    //alert(id_usuario)
-    $.ajax({
-      url: '<?php echo base_url('/ModuloPedidos/TotalPedidos');?>',
-      type: 'POST',
-      dataType: 'text',
-      data: {
-        id_usuario : id_usuario
-      },
-      success:function (data) {
-        $("#n_pedidos").text(data);
-      }
-      
-    });
+ 
   }
 
  
