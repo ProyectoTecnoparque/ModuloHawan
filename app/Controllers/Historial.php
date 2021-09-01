@@ -33,15 +33,59 @@ class  Historial extends BaseController
       {
             $historial = new HistorialModel();
             $inicio = $this->request->getPostGet('inicio');
-            // $inicio = '2021-08-13';
-            // $limite = $this->request->getPost('limite');
-            // $fecha_inicio = date('Y-m-d', strtotime($inicio));
-            // echo $fecha_inicio;
-
+            // $limite = $this->request->getPostGet(('limite');
+            
+            // $search = $inicio;
+            // $data = "SELECT * FROM point_acum WHERE fecha_insert LIKE '%" .
+            // $db->escapeLikeString($search) . "%' ESCAPE '!'";
 
 
             $data=$historial->select()->where('fecha_insert', $inicio)->findAll();
-            // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
+           
+
+            
+             if ($data) {
+                  echo json_encode($data);
+            } else {
+                  echo json_encode('error no encontrado');
+            }
+      }
+
+
+    
+}
+
+
+
+
+
+
+
+
+
+  //    public function BuscarDatos()
+      // {
+      //       $usuarios = new HistorialModel();
+      //       $id_perfil = $this->request->getPostGet('inicio');
+      //       $data = $usuarios
+      //             ->where('usuario_id', $id_perfil)
+      //             ->findAll();
+      //       if ($data) {
+      //             echo json_encode($data);
+      //       } else {
+      //             echo json_encode('error no encontrado');
+      //       }
+      // }
+
+
+
+
+
+
+
+
+
+ // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
 
             // 
             // $limite = '2021-08-20';
@@ -60,27 +104,3 @@ class  Historial extends BaseController
 
             // $data= "SELECT * FROM point_acum WHERE  fecha_insert= '$fecha_inicio";
             // "SELECT * FROM  WHERE fecha_insert >='.DATE_FORMAT($fecha_inicio,'%Y-%m-%d').'";
-
-            
-             if ($data) {
-                  echo json_encode($data);
-            } else {
-                  echo json_encode('error no encontrado');
-            }
-      }
-
-
-      //    public function BuscarDatos()
-      // {
-      //       $usuarios = new HistorialModel();
-      //       $id_perfil = $this->request->getPostGet('inicio');
-      //       $data = $usuarios
-      //             ->where('usuario_id', $id_perfil)
-      //             ->findAll();
-      //       if ($data) {
-      //             echo json_encode($data);
-      //       } else {
-      //             echo json_encode('error no encontrado');
-      //       }
-      // }
-}

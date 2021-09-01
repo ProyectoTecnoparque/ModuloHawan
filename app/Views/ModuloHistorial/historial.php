@@ -123,14 +123,20 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-<!-- FIN DEL MODAL CON LOS DATOS DE LOS USUARIOS INACTIVOS -->
+<!-- FIN DEL MODAL CON LOS DATOS DE LOS USUARIOS INACTIVOS
+// $(document).ready(iniciar);
 
+  // function iniciar(){ 
+  //   $('#buscar_info').submit(buscar_info);
+  // 
+   -->
 
 <script>
   $(document).ready(function() {
     $('#resultado_search').hide();
     $("#buscar_info").submit(function(event) {
       event.preventDefault();
+
       buscar_info();
     });
   });
@@ -138,10 +144,9 @@
   function buscar_info(){
     $('#Historial').hide();
     $('#resultado_search').show();
-
     inicio = $('#inicio').val();
     // limite = $('#limite').val();
- 
+  
 
     console.log(inicio, limite)
 
@@ -155,7 +160,7 @@
         }
       }).done(function(data) {
         console.log("funciona");
-
+       if (data) {
         for (var i = 0; i < data.length; i++) {
           $("#tbodyresultado").append('<tr>'+
           '<th>'+data[i].id +'</th>'+
@@ -165,6 +170,11 @@
           '<th>'+data[i].fecha_insert+'</th>'+
           '<tr>');
         }
+       }else{
+        $("#tbodyresultado").empty();
+       }
+        
+
       }).fail(function(data) {
         console.log("Error");
       });
