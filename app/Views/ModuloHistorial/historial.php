@@ -43,7 +43,7 @@
               <br>
               <br>
 
-            
+               <a href="#" id="archivo" class="btn btn-primary m-2" onClick="javascript:fnExcelReport();">Descargar Excel</a>
               <table id="resultado_search" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -63,8 +63,7 @@
               </form> -->
 
 
-              <a href="<?php echo base_url('/Historial/ImprimirCSV') ?>" class="btn  bg-danger mr-4" target="_blank">Descargar excel</a> 
-
+            
               <table id="data_table" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -108,6 +107,7 @@
   // 
    -->
 
+
 <script>
   $(document).ready(function() {
     $('#resultado_search').hide();
@@ -118,8 +118,13 @@
   });
 
   function buscar_info(){
-    $('#Historial').hide();
-    $('#resultado_search').show();
+    $('#data_table').hide();
+    $("#data_table").removeAttr("id");
+    $("#resultado_search").attr("id","data_table");
+    $('#data_table').show();
+
+    $("#archivo").html('Descargar Busqueda');
+
     inicio = $('#inicio').val();
     limite = $('#limite').val();
 
@@ -151,4 +156,37 @@
             console.log("Error");
         });
   }
+
+
+ function fnExcelReport() {
+    var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+    tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
+
+    tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
+
+    tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+    tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+
+    tab_text = tab_text + "<table border='1px'>";
+    tab_text = tab_text + $('#data_table').html();
+    tab_text = tab_text + '</table></body></html>';
+
+    var data_type = 'data:application/vnd.ms-excel';
+    
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+    
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+        if (window.navigator.msSaveBlob) {
+            var blob = new Blob([tab_text], {
+                type: "application/csv;charset=utf-8;"
+            });
+            navigator.msSaveBlob(blob, 'HistorialPuntos.xls');
+        }
+    } else {
+        $('#archivo').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+        $('#archivo').attr('download', 'HistorialPuntos.xls');
+    }
+
+}
 </script>

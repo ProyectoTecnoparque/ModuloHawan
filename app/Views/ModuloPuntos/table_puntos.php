@@ -126,6 +126,7 @@
       console.log(data)
     });   
    } 
+
    function EditarNivel(){
        id_nivel=$('#id_nivel').val();
        name_nivel=$('#name_nivel').val();
@@ -143,7 +144,7 @@
             id_nivel:id_nivel,
             name_nivel:name_nivel,
             puntos_req:puntos_req,
-            val_puntos:val_puntos,
+            val_puntos:val_puntos
       }
     }).done(function(data) {
       if (data) {
