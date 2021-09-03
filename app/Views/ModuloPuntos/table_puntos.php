@@ -58,7 +58,7 @@
                 <div class="modal-body">
                     <div class="input-group mb-3">
                         <input type="hidden" id="id_nivel">
-                        <input type="text" class="form-control" name="name_nivel" id="name_nivel" placeholder="Nombre del Nivel">
+                        <input type="text" class="form-control name_nivel" name="name_nivel" id="name_nivel" placeholder="Nombre del Nivel">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-certificate"></span>
@@ -67,14 +67,14 @@
                     </div>
                     <div class="input-group mb-4">
 
-                        <input type="text" class="form-control" id="puntos_req" name="puntos_req" placeholder="Ingrese el nuevo datos">
+                        <input type="text" class="form-control puntos_req" id="puntos_req" name="puntos_req" placeholder="Ingrese el nuevo datos">
                         <div class="input-group-append mr-2">
                             <div class="input-group-text">
                                 <span> <i class="fas fa-coins"></i></span>
 
                             </div>
                         </div>
-                        <input type="text" class="form-control" id="val_puntos" name="val_puntos" placeholder="Ingrese el nuevo datos">
+                        <input type="text" class="form-control val_puntos" id="val_puntos" name="val_puntos" placeholder="Ingrese el nuevo datos">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-hand-holding-usd"></span>
@@ -93,7 +93,6 @@
 </div>
 
 <script>
-
     $(document).ready(function(){     
         $("#edit_nivel").submit(function(event){
             event.preventDefault();
@@ -102,6 +101,7 @@
 
         $(".edit_nivel").click(detalle_nivel);
     });
+
   
    function detalle_nivel(){
       var nivel = $(this).parents("tr").find(".nivel").text();
@@ -117,9 +117,9 @@
     }).done(function(data) {
       for (var i = 0; i < data.length; i++) {
         $('#id_nivel').val(data[i].id);
-        $('#name_nivel').val(data[i].Nivel);
-        $('#puntos_req').val(data[i].puntos);
-        $('#val_puntos').val(data[i].valor);
+        $('.name_nivel').val(data[i].Nivel);
+        $('.puntos_req').val(data[i].puntos);
+        $('.val_puntos').val(data[i].valor);
        
       }
     }).fail(function(data) {
@@ -127,7 +127,9 @@
     });   
    } 
 
+
    function EditarNivel(){
+    
        id_nivel=$('#id_nivel').val();
        name_nivel=$('#name_nivel').val();
        puntos_req=$('#puntos_req').val();
@@ -136,7 +138,15 @@
        console.log(id_nivel,name_nivel,puntos_req,val_puntos)
        
 
-      $.ajax({
+      if (name_nivel== '' || puntos_req == '' || val_puntos == '' ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: "Debe ingresar todos los campos",
+      })
+    } else {
+      
+       $.ajax({
         url: '<?php echo base_url('/Puntos/EditarNivel'); ?>',
         type: 'POST',
         dataType: "json",
@@ -145,28 +155,27 @@
             name_nivel:name_nivel,
             puntos_req:puntos_req,
             val_puntos:val_puntos
-      }
-    }).done(function(data) {
-      if (data) {
-        Swal.fire({
-          text: "Se ha modificado correctamente el nivel",
-          icon: 'success',
-          confirmButtonColor: '#3085d6',
-          confirmButtonText: 'Aceptar',
+        }
 
-        }).then((result) =>{
-          window.location = '<?php echo base_url('/Puntos'); ?>';
-        })
-      } else {
-        alert('no funciona');
-      }
-    }).fail(function() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: 'Se ha generado un problema al enviar los nuevos datos.'
-        })
-    });
-   } 
+      }).done(function(data) {
+
+        if (data) {
+          Swal.fire({
+            text: 'Se ha enviado exitosamente los datos.',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar',
+
+          }).then((result) => {
+
+            window.location = '<?php echo base_url('/Puntos'); ?>';
+          })
+        }
+      }).fail(function() {
+        alert("error al enviar");
+      });
+    }
+  }
+ 
     
 </script>

@@ -126,4 +126,6 @@ class BuscarUsuarios extends BaseController
             }
 
 	}
+
+	
 }
