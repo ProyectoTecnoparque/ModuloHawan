@@ -44,6 +44,13 @@
                               <dt class="col-sm-3">Estado :</dt>
                               <dd class="col-sm-9"><?php echo $datos['estado'] ?></dd>
                               <dt class="col-sm-3">Puntos Acumuldos :</dt>
+
+
+                              <select class="col-sm-3" name="tipo_ingreso" id="tipo_ingreso">
+                                <option value="">Tipo de modificación</option>
+                                <option value="sum">Sumar Puntos</option>
+                                <option value="res">Restar Puntos</option>
+                              </select>
                               <input id="puntos" disabled class="col-sm-2" value="<?php echo $datos['puntos'] ?>" >
                               <input type="hidden" id="id" class="col-sm-2" value="<?php echo $datos['id'] ?>" >
                               <a  type='submit' id="edit_point" class="btn btn-success text-light ml-2 habilitar" >Editar Puntos</a>
@@ -82,6 +89,7 @@ function editar_puntos(){
 function Guardar_puntos(){
   puntos =$('#puntos').val();
   id =$('#id').val();
+  tipo_ingreso = $('#tipo_ingreso').val();
 //  console.log (puntos)
   
   $.ajax({
@@ -90,7 +98,8 @@ function Guardar_puntos(){
         dataType: "json",
         data: {
           id : id,
-          puntos: puntos
+          puntos: puntos,
+          tipo_ingreso:tipo_ingreso
         }
 
       }).done(function(data) {
