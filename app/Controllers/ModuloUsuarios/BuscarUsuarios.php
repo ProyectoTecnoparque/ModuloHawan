@@ -40,7 +40,7 @@ class BuscarUsuarios extends BaseController
 		$id = $this->request->getPostGet('doc');
 		$usuario = $usuarios->select('usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,
 		                              usuario.departamento,usuario.direccion,usuario.genero,usuario.tipo_usuario,
-									  usuario.estado,usuario.fecha_insert,departamentos.nombre')
+									  usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre')
 			->join('departamentos', 'departamentos.id_depa=usuario.departamento')
 			->where('usuario.id', $id)
 			->first();

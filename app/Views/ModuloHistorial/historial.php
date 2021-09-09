@@ -46,7 +46,7 @@
                <a href="#" id="archivo" class="btn btn-primary m-2" onClick="javascript:fnExcelReport();">Descargar Excel</a>
               <table id="resultado_search" class="table table-bordered table-striped">
                 <thead>
-                  <tr>
+                  <tr >
                     <th>Id</th>
                     <th>Usuario</th>
                     <th>Nivel</th>

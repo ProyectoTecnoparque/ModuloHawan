@@ -182,7 +182,6 @@
   $(document).ready(iniciar);
 
   function iniciar() {
-    $('#divBtnAvatar').hide()
     $('#opcion_depart').hide();
     buscardatos();
   }

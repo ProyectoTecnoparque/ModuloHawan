@@ -38,7 +38,6 @@ $routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Historial', 'Historial::historial_expe');
-$routes->get('/ImprimirCSV', 'Historial::ImprimirCSV');
 
 
 

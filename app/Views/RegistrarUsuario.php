@@ -32,7 +32,7 @@ if (isset($_SESSION['tipo_usuario'])) {
 
    <nav class="navbar navbar-light" style="background-color: #0292E4;">
       <a class="navbar-brand" href="">
-         <img  class="ml-5" src="<?php echo base_url('public/dist/img/travel.png');?>" height="90" width="90" alt="" >
+         <img  class="ml-5" src="<?php echo base_url('public/dist/img/travel.png');?>" height="200" width="200" alt="" >
       </a>
    </nav>
 

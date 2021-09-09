@@ -42,6 +42,9 @@
                               <dd class="col-sm-9"><?php echo $datos['nombre'] ?></dd>
                               <dt class="col-sm-3">Estado :</dt>
                               <dd class="col-sm-9"><?php echo $datos['estado'] ?></dd>
+                              <dt class="col-sm-3">Puntos Acumuldos :</dt>
+                              <input id="puntos" disabled class="col-sm-2" value="<?php echo $datos['puntos'] ?>" >
+                              <a  id="edit_point" class="btn btn-success text-light ml-2 habilitar" >Editar Puntos</a>
                             </dl>
                           </div>
                           <a href="<?php echo base_url('/ModuloUsuarios/BuscarUsuarios') ?>" class="btn  btn-info col-2 mt-4 mb-4 ml-4"><i class="mr-2 fas fa-arrow-circle-left"></i>Regresar</a>
@@ -57,3 +60,44 @@
     </div>
   </div>
 </div>
+<script>
+$(document).ready(iniciar);
+
+function iniciar() {
+  $('#edit_point').on('click', editar_puntos);
+}
+
+function editar_puntos(){
+  $('#puntos').prop('disabled', false);
+
+  $("#edit_point").removeAttr("id");
+  $(".habilitar").attr("id","guardar");
+  $("#guardar").html('Guardar Cambios');
+
+  $('#guardar').on('click', Guardar_puntos);
+  
+}
+function Guardar_puntos(){
+  puntos =$('#puntos').val();
+  alert (puntos)
+  
+  $.ajax({
+        url: '<?php echo base_url('/Historial/BuscarDatos'); ?>',
+        type: 'POST',
+        dataType: "json",
+        data: {
+          puntos: puntos
+          
+        }
+      }).done(function(data) {
+        console.log("funciona");
+    
+        }).fail(function(data) {
+            console.log("Error");
+        });
+  }
+
+
+
+
+</script>
