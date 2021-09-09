@@ -129,7 +129,7 @@
   function restaurarestado() {
 
     var doc = $(this).parents("tr").find(".doc_in").text();
-    alert(doc)
+    // alert(doc)
     $.ajax({
       url: '<?php echo base_url('/ModuloUsuarios/RestaurarUsuario'); ?>',
       type: 'POST',

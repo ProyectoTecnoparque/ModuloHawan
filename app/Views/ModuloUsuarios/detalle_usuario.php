@@ -24,10 +24,11 @@
                         
                           <div class="card-body">
                             <dl class="row">
+
                               <dt class="col-sm-3">Documento :</dt>
                               <dd class="col-sm-9"><?php echo $datos['documento'] ?></dd>
                               <dt class="col-sm-3">Nombre Completo : </dt>
-                              <dd class="col-sm-8"><?php echo $datos['nombres'] . '     ' . $datos['apellidos']; ?></dd>
+                              <dd class="col-sm-8"><?php echo $datos['nombres'] . '  ' . $datos['apellidos']; ?></dd>
                               <dt class="col-sm-3">Tipo de usuario :</dt>
                               <dd class="col-sm-9"><?php echo $datos['tipo_usuario'] ?></dd>
                               <dt class="col-sm-3">Genero</dt>
@@ -44,7 +45,8 @@
                               <dd class="col-sm-9"><?php echo $datos['estado'] ?></dd>
                               <dt class="col-sm-3">Puntos Acumuldos :</dt>
                               <input id="puntos" disabled class="col-sm-2" value="<?php echo $datos['puntos'] ?>" >
-                              <a  id="edit_point" class="btn btn-success text-light ml-2 habilitar" >Editar Puntos</a>
+                              <input type="hidden" id="id" class="col-sm-2" value="<?php echo $datos['id'] ?>" >
+                              <a  type='submit' id="edit_point" class="btn btn-success text-light ml-2 habilitar" >Editar Puntos</a>
                             </dl>
                           </div>
                           <a href="<?php echo base_url('/ModuloUsuarios/BuscarUsuarios') ?>" class="btn  btn-info col-2 mt-4 mb-4 ml-4"><i class="mr-2 fas fa-arrow-circle-left"></i>Regresar</a>
@@ -74,30 +76,45 @@ function editar_puntos(){
   $(".habilitar").attr("id","guardar");
   $("#guardar").html('Guardar Cambios');
 
-  $('#guardar').on('click', Guardar_puntos);
+  $('#guardar').click( Guardar_puntos);
   
 }
 function Guardar_puntos(){
   puntos =$('#puntos').val();
-  alert (puntos)
+  id =$('#id').val();
+//  console.log (puntos)
   
   $.ajax({
-        url: '<?php echo base_url('/Historial/BuscarDatos'); ?>',
+        url: '<?php echo base_url('/ModuloUsuarios/EditarPuntos'); ?>',
         type: 'POST',
         dataType: "json",
         data: {
+          id : id,
           puntos: puntos
-          
         }
+
       }).done(function(data) {
-        console.log("funciona");
     
+          Swal.fire({
+            text: "Se ha modificado los datos del Usuario",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar',
+
+          }).then((result) => {
+            window.location = '';
+          })  
+  
         }).fail(function(data) {
-            console.log("Error");
+            console.log(data);
+            Swal.fire({
+            text: "Se ha modificado los datos del Usuario",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar',
+          })
         });
   }
-
-
 
 
 </script>

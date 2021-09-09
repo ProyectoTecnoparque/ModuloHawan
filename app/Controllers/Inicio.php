@@ -74,7 +74,6 @@ class Inicio extends BaseController
       $direccion = $this->request->getPostGet('direccion');
       $genero = $this->request->getPostGet('genero');
       $departamento = $this->request->getPostGet('departamento');
-      $puntos =$this->request->getPostGet('puntos');
    
 
       // Verificar que el documento no este previamente registrado
@@ -100,7 +99,7 @@ class Inicio extends BaseController
                'departamento' => $departamento,
                'estado' => 'Activo',
                'tipo_usuario' => 'Usuario',
-               'puntos' => $puntos,
+               'puntos' => '100',
                // Administrador
             ]);
             if ($registros) {

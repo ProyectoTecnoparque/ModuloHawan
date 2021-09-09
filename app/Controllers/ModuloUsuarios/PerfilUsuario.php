@@ -80,6 +80,26 @@ class PerfilUsuario extends BaseController
 			echo json_encode('INVALID##PASSWORD');
 		}
 	}
+    
+
+
+    public function EditarPuntos()
+	{
+	  $usuarios = new UsuariosModel();	
+      $new_point = $this->request->getPostGet('puntos');
+	  $id = $this->request->getPostGet('id');
+
+      $data = $usuarios->set(['puntos'=> $new_point])->where('id', $id)->update();
+
+	  if ($data) {
+		$mensaje = "OK#UPDATE";
+	} else {
+		$mensaje = "NO#UPDATE";
+	}
+
+	  echo $mensaje;
+	}
+
 
 
 	public function NivelUsuario(){

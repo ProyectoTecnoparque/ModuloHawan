@@ -14,8 +14,8 @@
 
 
 -- Volcando estructura de base de datos para code
-CREATE DATABASE IF NOT EXISTS `code` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
-USE `code`;
+CREATE DATABASE IF NOT EXISTS `code2` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+USE `code2`;
 
 -- Volcando estructura para tabla code.departamentos
 CREATE TABLE IF NOT EXISTS `departamentos` (

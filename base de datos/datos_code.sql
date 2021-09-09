@@ -15,9 +15,39 @@
 -- Volcando datos para la tabla code.departamentos: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `departamentos` DISABLE KEYS */;
 INSERT INTO `departamentos` (`id_depa`, `nombre`) VALUES
-	(1, 'Risaralda\n'),
-	(2, 'Caldas'),
-	(3, 'Quindío');
+	  (1, 'Amazonas'),
+	(2, 'Antioquia'),
+	(3, 'Arauca'),
+	(4, 'Atlantico'),
+	(5, 'Bolivar'),
+	(7, 'Boyaca'),
+	(8, 'Caldas'),
+	(9, 'Caqueta'),
+	(10, 'Casanare'),
+	(11, 'Cauca'),
+	(12, 'Cesar'),
+	(13, 'Choco'),
+	(14, 'Cordoba'),
+	(15, 'Cundinamarca'),
+	(16, 'Distrito Capital'),
+	(17, 'Guainia'),
+	(18, 'Guaviare'),
+	(19, 'Huila'),
+	(20, 'La Guajira'),
+	(21, 'Magdalena'),
+	(22, 'Meta'),
+	(23, 'Nariño'),
+	(24, 'Norte de Santander'),
+	(25, 'Putumayo'),
+	(26, 'Quindio'),
+	(27, 'Risaralda'),
+	(28, 'San Andres y Providencia'),
+	(29, 'Santander'),
+	(30, 'Sucre'),
+	(31, 'Tolima'),
+	(32, 'Valle del Cauca'),
+	(33, 'Vaupes'),
+	(34, 'Vichada');
 /*!40000 ALTER TABLE `departamentos` ENABLE KEYS */;
 
 -- Volcando datos para la tabla code.point_acum: ~3 rows (aproximadamente)

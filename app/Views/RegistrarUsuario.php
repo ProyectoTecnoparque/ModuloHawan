@@ -102,13 +102,6 @@ if (isset($_SESSION['tipo_usuario'])) {
                            </div>
 
                            <div class="input-group mb-3">
-                              <input type="number" class="form-control" id="puntos" name="puntos" placeholder="Puntos">
-                              <div class="input-group-append mr-2">
-                                 <div class="input-group-text">
-                                 <i class="fas fa-coins"></i>
-                                 </div>
-                              </div>
-
                               <select name="departamento" id="departamento" class="form-control mr-3  ">
                                  <option value="" disabled selected>Seleccione Departamento</option>
                                     <option value="1">Risaralda</option>
@@ -193,10 +186,9 @@ if (isset($_SESSION['tipo_usuario'])) {
                 direccion = $('#direccion').val();
                 genero = $('#genero').val();
                 departamento = $('#departamento').val();
-                puntos = $('#puntos').val();
                 
 
-                if(documento != "" && nombres != "" && apellidos!= "" && email!= "" && password != ""   && direccion!= "" &&genero!= "" && departamento!= "" && passwordconfirm!= "" && puntos!= ""){
+                if(documento != "" && nombres != "" && apellidos!= "" && email!= "" && password != ""   && direccion!= "" &&genero!= "" && departamento!= "" && passwordconfirm!= "" ){
                   $.ajax({
                      url:'<?php echo base_url('Inicio/RegistrarUsuario')?>',
                      type: 'POST',
@@ -209,7 +201,6 @@ if (isset($_SESSION['tipo_usuario'])) {
                         direccion:direccion,
                         genero:genero,
                         departamento:departamento,
-                        puntos:puntos,
                         password:password
                      }
                   })
@@ -227,28 +218,21 @@ if (isset($_SESSION['tipo_usuario'])) {
                               text: 'El correo ingresado ya esta registrado.'
                           })
                       } else if (data == "OK#CORRECT#DATA") {
-                        window.location = "<?php echo base_url('Inicio/cargarVistaInicio'); ?>";
 
-                        // Swal.fire({
-                        //    title: 'Iniciar Sesión ahora?',
-                        //    showDenyButton: true,
-                        //    showCancelButton: true,
-                        //    confirmButtonText: `Aceptar`,
-                        //    }).then((result) => {
-                        //    /* Read more about isConfirmed, isDenied below */
-                        //    if (result.isConfirmed) {
-                        //       window.location = "<?php echo base_url('Inicio/cargarVistaInicio'); ?>";
-                        //    } else if (result.isDenied) {
-                        //       window.location = "<?php echo base_url('Inicio/cargarVistaInicio'); ?>";
-                        //    }
-                        //    })
+                        Swal.fire({
+                           title: 'Iniciar Sesión ahora?',
+                           showDenyButton: true,
+                           showCancelButton: true,
+                           confirmButtonText: `Aceptar`,
+                           }).then((result) => {
+                           /* Read more about isConfirmed, isDenied below */
+                           if (result.isConfirmed) {
+                              window.location = "<?php echo base_url('Inicio/cargarVistaInicio'); ?>";
+                           } else if (result.isDenied) {
+                              window.location = "<?php echo base_url('Inicio/cargarVistaInicio'); ?>";
+                           }
+                           })
                         
-                        }else if (data == "OK#CORRECT#DATA") {
-                          Swal.fire({
-                              icon: 'success',
-                              title: 'Exitoso!',
-                              text: 'Los datos del usuario han sido registrados.'
-                          })
                         }else if (data == "OK#INVALID#DATA") {
                           Swal.fire({
                               icon: 'error',

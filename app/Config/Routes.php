@@ -34,7 +34,7 @@ $routes->setAutoRoute(true);
 $routes->get('/Login', 'Inicio::index');
 $routes->get('/Inicio', 'Inicio::cargarVistaInicio');
 $routes->get('/RegistrarUsuario', 'Inicio::RegistrarUsuario');
-$routes->get('7NuevoAdmin', 'Inicio::NuevoAdmin');
+$routes->get('NuevoAdmin', 'Inicio::NuevoAdmin');
 
 $routes->get('/Registrar', 'Inicio::Registrar');
 $routes->get('/Historial', 'Historial::historial_expe');
@@ -60,6 +60,8 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
 
     $routes->add('BuscarUsuarios', 'BuscarUsuarios::index');
     $routes->add('BuscarusuId', 'BuscarUsuarios::buscarporId');
+   
+
 
     $routes->add('MostrarUsuarios', 'BuscarUsuarios::listarusuarios');
     $routes->add('Actuaestado', 'BuscarUsuarios::actualizarest');
@@ -81,6 +83,8 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
 
     $routes->add('EditarPerfil', 'PerfilUsuario::enviarnewdatos');
+
+    $routes->add('EditarPuntos', 'PerfilUsuario::EditarPuntos');
 
     //  Editar datos  de seguridad del perfil 
     $routes->add('PasswordPerfil', 'PerfilUsuario::password_edit');
