@@ -102,7 +102,7 @@ function Guardar_puntos(){
             confirmButtonText: 'Aceptar',
 
           }).then((result) => {
-            window.location = '';
+             location.reload();
           })  
   
         }).fail(function(data) {
@@ -112,7 +112,9 @@ function Guardar_puntos(){
             icon: 'success',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Aceptar',
-          })
+          }).then((result) => {
+             location.reload();
+          })  
         });
   }
 
