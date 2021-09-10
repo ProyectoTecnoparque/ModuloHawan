@@ -70,6 +70,16 @@
      DELIMITER
 
 
+     
+     DELIMITER//
+     CREATE TRIGGER Sum_puntos AFTER INSERT ON puntos_sum
+     FOR EACH ROW
+     UPDATE usuario SET puntos=puntos+NEW.puntos_sum
+     WHERE id=NEW.usuario_id;
+     //
+     DELIMITER
+
+
 
 - 2 para actualizar los pasajes_vendidos y el total_recolectado
      cada vez que se actualice la cantidad_personas en un tiquete
@@ -101,3 +111,25 @@
      WHERE id_ruta=OLD.id_ruta;
      //
      DELIMITER
+
+
+
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS `point_acum` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
+  `puntos_sum` int(11)  NULL,
+  `puntos_rest` int(11)  NULL,
+  `id_nivel` int(11) NOT NULL,
+  `fecha_insert` timestamp NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_point_acum_usuario` (`puntos_sum`),
+  KEY `point_acum_ibfk_1` (`id_nivel`),
+  KEY `point_acum_ibfk_2` (`usuario_id`),
+  CONSTRAINT `point_acum_ibfk_1` FOREIGN KEY (`id_nivel`) REFERENCES `punto_nivel` (`id`),
+  CONSTRAINT `point_acum_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=INNODB  DEFAULT CHARSET=utf8mb4;

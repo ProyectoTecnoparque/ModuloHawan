@@ -84,7 +84,8 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
 
     $routes->add('EditarPerfil', 'PerfilUsuario::enviarnewdatos');
 
-    $routes->add('EditarPuntos', 'PerfilUsuario::EditarPuntos');
+    $routes->add('EditarPuntossum', 'PerfilUsuario::EditarPuntossum');
+    $routes->add('EditarPuntosres', 'PerfilUsuario::EditarPuntosres');
 
     //  Editar datos  de seguridad del perfil 
     $routes->add('PasswordPerfil', 'PerfilUsuario::password_edit');

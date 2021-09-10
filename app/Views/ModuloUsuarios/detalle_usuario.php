@@ -45,11 +45,12 @@
                               <dd class="col-sm-9"><?php echo $datos['estado'] ?></dd>
                               <dt class="col-sm-3">Puntos Acumuldos :</dt>
 
-                              <select  id="Tipo_puntos" class="col-sm-3 mr-2 form-control" name="tipo_ingreso" id="tipo_ingreso">
+                              <select  id="tipo_ingreso" class="col-sm-3 mr-2 form-control" name="tipo_ingreso" >
                                 <option value="">Tipo de modificación</option>
                                 <option value="sum">Sumar Puntos</option>
                                 <option value="res">Restar Puntos</option>
                               </select>
+                              <input id="puntos2"  class="col-sm-2 form-control" value="">
 
                               <input id="puntos" disabled class="col-sm-2 form-control" value="<?php echo $datos['puntos'] ?>" >
                               <input type="hidden" id="id" class="col-sm-2" value="<?php echo $datos['id'] ?>" >
@@ -74,34 +75,39 @@ $(document).ready(iniciar);
 
 function iniciar() {
   $('#edit_point').on('click', editar_puntos);
-  $('#Tipo_puntos').hide();
+  $('#tipo_ingreso').hide();
+  $('#puntos2').hide();
 }
 
 function editar_puntos(){
-  $('#puntos').prop('disabled', false);
-
+  $('#puntos').hide('');
+  $('#puntos2').show();
+  
   $("#edit_point").removeAttr("id");
   $(".habilitar").attr("id","guardar");
   $("#guardar").html('Guardar Cambios');
-  $('#Tipo_puntos').show();
+  $('#tipo_ingreso').show();
 
   $('#guardar').click( Guardar_puntos);
   
 }
 function Guardar_puntos(){
-  puntos =$('#puntos').val();
-  id =$('#id').val();
+
   tipo_ingreso = $('#tipo_ingreso').val();
-//  console.log (puntos)
-  
+
+
+  alert(tipo_ingreso)  
+if (tipo_ingreso=="sum") {
+
+    sum_puntos =$('#puntos2').val();
+    id_sum =$('#id').val();
   $.ajax({
-        url: '<?php echo base_url('/ModuloUsuarios/EditarPuntos'); ?>',
+        url: '<?php echo base_url('/ModuloUsuarios/EditarPuntossum'); ?>',
         type: 'POST',
         dataType: "json",
         data: {
-          id : id,
-          puntos: puntos,
-          tipo_ingreso:tipo_ingreso
+          sum_puntos : sum_puntos ,
+          id_sum: id_sum
         }
 
       }).done(function(data) {
@@ -127,7 +133,47 @@ function Guardar_puntos(){
              location.reload();
           })  
         });
+  
+  
+} else if(tipo_ingreso=="res") { 
+  
+  res_puntos =$('#puntos2').val();
+  id_res =$('#id').val();
+  
+  $.ajax({
+        url: '<?php echo base_url('/ModuloUsuarios/EditarPuntosres'); ?>',
+        type: 'POST',
+        dataType: "json",
+        data: {
+          res_puntos : res_puntos,
+          id_res: id_res
+        }
+
+      }).done(function(data) {
+    
+          Swal.fire({
+            text: "Se ha modificado los datos del Usuario",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar',
+
+          }).then((result) => {
+             location.reload();
+          })  
+  
+        }).fail(function(data) {
+            console.log(data);
+            Swal.fire({
+            text: "Se ha modificado los datos del Usuario",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Aceptar',
+          }).then((result) => {
+             location.reload();
+          })  
+      });
   }
+}
 
 
 </script>

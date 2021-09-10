@@ -11,7 +11,7 @@ class HistorialModel extends Model {
     protected $returnType = 'array';
     protected $useSoftDeletes = false;
 
-    protected $allowedFields = ['usuario_id', 'acum_point', 'id_nivel'];
+    protected $allowedFields = ['usuario_id', 'puntos_sum', 'puntos_rest' ,'id_nivel'];
 
     protected $useTimestamps = false;
     protected $createdField  = 'fecha_insert';
@@ -22,3 +22,4 @@ class HistorialModel extends Model {
     protected $validationMessages = [];
     protected $skipValidation     = false;
 }
+

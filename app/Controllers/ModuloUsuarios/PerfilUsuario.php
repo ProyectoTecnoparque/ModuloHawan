@@ -83,18 +83,43 @@ class PerfilUsuario extends BaseController
     
 
 
-    public function EditarPuntos()
+    public function EditarPuntossum()
 	{
-	  $usuarios = new UsuariosModel();	
-      $new_point = $this->request->getPostGet('puntos');
-	  $id = $this->request->getPostGet('id');
+	  $historial = new HistorialModel();	
+      $sum_puntos  = $this->request->getPostGet('sum_puntos');
+	  $id_sum = $this->request->getPostGet('id_sum');
 
-      $data = $usuarios->set(['puntos'=> $new_point])->where('id', $id)->update();
+	  $data = $historial->save([
+		'usuario_id' => $id_sum,
+		'puntos_sum' => $sum_puntos,
+		'puntos_rest' => '0',
+		'id_nivel' =>'2',]);
 
 	  if ($data) {
-		$mensaje = "OK#UPDATE";
+		$mensaje = "OK#INSERT";
 	} else {
-		$mensaje = "NO#UPDATE";
+		$mensaje = "NO#INSERT";
+	}
+
+	  echo $mensaje;
+	}
+
+	public function EditarPuntosres()
+	{
+	  $historial = new HistorialModel();	
+      $new_point = $this->request->getPostGet('res_puntos');
+	  $id_user = $this->request->getPostGet('id_res');
+
+      $data = $historial->save([
+		  'usuario_id' => $id_user,
+		  'puntos_sum' =>'0',
+		  'puntos_rest' => $new_point,
+		  'id_nivel' =>'2',]);
+
+	  if ($data) {
+		$mensaje = "OK#INSERT";
+	} else {
+		$mensaje = "NO#INSERT";
 	}
 
 	  echo $mensaje;

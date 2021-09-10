@@ -63,14 +63,14 @@
               </form> -->
 
 
-            
               <table id="data_table" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th align="center">Id</th>
                     <th align="center">Usuario</th>
+                    <th align="center">Puntos Sumados</th>
+                    <th align="center">Puntos Restados</th>
                     <th align="center">Nivel</th>
-                    <th align="center">Valor</th>
                     <th align="center">fecha</th>
                   </tr>
                 </thead>
@@ -79,15 +79,13 @@
                     <tr>
                       <td ><?php echo $dato['id']; ?></td>
                       <td ><?php echo $dato['usuario_id']; ?></td>
+                      <td ><?php echo $dato['puntos_sum']; ?></td>
+                      <td ><?php echo $dato['puntos_rest']; ?></td>
                       <td ><?php echo $dato['id_nivel']; ?></td>
-                      <td ><?php echo $dato['acum_point']; ?></td>
                       <td ><?php echo $dato['fecha_insert']; ?></td>
                     </tr>
                   <?php } ?>
                 </tbody>
-
-              
-              
               </table>
             </div>
             <!-- /.card-body -->
