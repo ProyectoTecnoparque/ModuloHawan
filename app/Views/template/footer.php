@@ -15,7 +15,7 @@
 </div>
 <!-- ./wrapper -->
 
-
+<script src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url('/public/plugins/jquery-ui/jquery-ui.min.js'); ?>"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -48,13 +48,13 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="<?php echo base_url('/public/dist/js/pages/dashboard.js'); ?>"></script> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <script src="<?php echo base_url('/public/dist/js/tableExport/tableExport.js'); ?>"></script>
 <script src="<?php echo base_url('/public/dist/js/tableExport/tableExport.min.js'); ?>"></script>
 
 <script src="<?php echo base_url('/public/dist/js/custom_export.js'); ?>"></script> 
 <script src="<?php echo base_url('/public/plugins/toastr/toastr.min.js'); ?>"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"></script>
 
 </body>
 

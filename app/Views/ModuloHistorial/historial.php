@@ -46,12 +46,13 @@
                <a href="#" id="archivo" class="btn btn-primary m-2" onClick="javascript:fnExcelReport();">Descargar Excel</a>
               <table id="resultado_search" class="table table-bordered table-striped">
                 <thead>
-                  <tr >
-                    <th>Id</th>
-                    <th>Usuario</th>
-                    <th>Nivel</th>
-                    <th>Valor</th>
-                    <th>fecha</th>
+                <tr>
+                    <th class="text_center">No. Registro</th>
+                    <th class="text_center">Documento Usuario</th>
+                    <th class="text_center">Puntos Sumados <i class="fas fa-arrow-up text-success"></i></th>
+                    <th class="text_center">Puntos Restados <i class="fas fa-arrow-down text-danger"></i></th>
+                    <th class="text_center">Nivel</th>
+                    <th class="text_center">fecha</th>
                   </tr>
                 </thead>
                 <tbody id="tbodyresultado">
@@ -63,24 +64,24 @@
               </form> -->
 
 
-              <table id="data_table" class="table table-bordered table-striped">
+              <table id="data_table" class="table table-bordered table-striped ">
                 <thead>
                   <tr>
-                    <th align="center">Id</th>
-                    <th align="center">Usuario</th>
-                    <th align="center">Puntos Sumados</th>
-                    <th align="center">Puntos Restados</th>
-                    <th align="center">Nivel</th>
-                    <th align="center">fecha</th>
+                    <th class="text_center">No. Registro</th>
+                    <th class="text_center">Documento Usuario</th>
+                    <th class="text_center">Puntos Sumados <i class="fas fa-arrow-up text-success"></i></th>
+                    <th class="text_center">Puntos Restados <i class="fas fa-arrow-down text-danger"></i></th>
+                    <th class="text_center">Nivel</th>
+                    <th class="text_center">fecha</th>
                   </tr>
                 </thead>
-                <tbody id="tbodyusuarios">
+                <tbody id="tbodyusuarios" class="text-right">
                   <?php foreach ($datos as $dato) { ?>
                     <tr>
-                      <td ><?php echo $dato['id']; ?></td>
-                      <td ><?php echo $dato['usuario_id']; ?></td>
-                      <td ><?php echo $dato['puntos_sum']; ?></td>
-                      <td ><?php echo $dato['puntos_rest']; ?></td>
+                      <td class=""><?php echo $dato['id']; ?></td>
+                      <td ><?php echo $dato['documento']; ?></td>
+                      <td class="text-success">+ <?php echo $dato['puntos_sum']; ?></td>
+                      <td class="text-danger">- <?php echo $dato['puntos_rest']; ?></td>
                       <td ><?php echo $dato['id_nivel']; ?></td>
                       <td ><?php echo $dato['fecha_insert']; ?></td>
                     </tr>
@@ -97,17 +98,10 @@
 </div>
 
 
-<!-- FIN DEL MODAL CON LOS DATOS DE LOS USUARIOS INACTIVOS
-// $(document).ready(iniciar);
-
-  // function iniciar(){ 
-  //   $('#buscar_info').submit(buscar_info);
-  // 
-   -->
-
 
 <script>
   $(document).ready(function() {
+    
     $('#resultado_search').hide();
     $("#buscar_info").submit(function(event) {
       event.preventDefault();
@@ -120,6 +114,7 @@
     $("#data_table").removeAttr("id");
     $("#resultado_search").attr("id","data_table");
     $('#data_table').show();
+    $('#data_table').DataTable();
 
     $("#archivo").html('Descargar Busqueda');
 
@@ -140,51 +135,33 @@
       }).done(function(data) {
         console.log("funciona");
       
+       if (data>0) {
         for (var i = 0; i < data.length; i++) {
 
           $("#tbodyresultado").append('<tr>'+
           '<th>'+data[i].id +'</th>'+
-          '<th>'+data[i].usuario_id +'</th>'+
+          '<th>'+data[i].documento  +'</th>'+
           '<th>'+data[i].id_nivel +'</th>'+
           '<th>'+data[i].acum_point +'</th>'+
           '<th>'+data[i].fecha_insert+'</th>'+  
           '<tr>');
-        }
+          }
+         
+       } else {
+        Swal.fire({
+          text: "No se ha encontrado ningun dato",
+          icon: 'error',
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'Aceptar',
+
+        }).then((result) => {
+          location.reload();
+        })
+       }
         }).fail(function(data) {
             console.log("Error");
         });
   }
 
 
- function fnExcelReport() {
-    var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
-    tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
-
-    tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
-
-    tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
-    tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
-
-    tab_text = tab_text + "<table border='1px'>";
-    tab_text = tab_text + $('#data_table').html();
-    tab_text = tab_text + '</table></body></html>';
-
-    var data_type = 'data:application/vnd.ms-excel';
-    
-    var ua = window.navigator.userAgent;
-    var msie = ua.indexOf("MSIE ");
-    
-    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-        if (window.navigator.msSaveBlob) {
-            var blob = new Blob([tab_text], {
-                type: "application/csv;charset=utf-8;"
-            });
-            navigator.msSaveBlob(blob, 'HistorialPuntos.xls');
-        }
-    } else {
-        $('#archivo').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
-        $('#archivo').attr('download', 'HistorialPuntos.xls');
-    }
-
-}
 </script>

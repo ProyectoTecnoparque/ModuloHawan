@@ -22,7 +22,8 @@ class  Historial extends BaseController
             $tipo_usuario = $_SESSION['tipo_usuario'];
 
             if ($tipo_usuario == "Administrador") {
-                  $consulta['datos'] = $historial
+                         $consulta['datos'] = $historial->select('point_acum.id,point_acum.usuario_id,point_acum.puntos_sum,point_acum.puntos_rest,point_acum.id_nivel,point_acum.fecha_insert,usuario.documento,usuario.id')
+                        ->join('usuario', 'point_acum.usuario_id=usuario.id')
                         ->findAll();
             } else {
                   $consulta['datos'] = $historial
@@ -38,10 +39,9 @@ class  Historial extends BaseController
       {
             $historial = new HistorialModel();
             $inicio = $this->request->getPostGet('inicio');
-            $limite = $this->request->getPostGet('limite');
+            // $limite = $this->request->getPostGet('limite');
             
       
-
              $data=$historial->where('fecha_insert', $inicio )->findAll();
              // $data= $historial->where("fecha_insert BETWEEN '{$inicio}' AND '{$limite}'");
 
@@ -58,19 +58,16 @@ class  Historial extends BaseController
 }
        
 
-      // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
 
-      // 
+      // $datos = $this->$historial->where("fecha_insert", $inicio)->or_where("fecha_insert", $limite);
       // $limite = '2021-08-20';
 
       //$data=$historial->where('fecha_insert BETWEEN "'. date('Y-m-d', strtotime($inicio)). '" AND "'. date('Y-m-d', strtotime($limite)).'"');
 
-      
       // $historial = "SELECT fecha_insert FROM point_acum WHERE acum_point LIKE '%" .
       // $data=$historial->escapeLikeString($inicio) . "%' ESCAPE '!'";
 
-
-            // $data = $historial->where('fecha_insert',$fecha_inicio);
+      // $data = $historial->where('fecha_insert',$fecha_inicio);
       // $data = $historial->where('fecha_insert BETWEEN',$inicio. '"AND"' .$limite.'"')->findAll();
       
       // SELECT * FROM point_acum WHERE fecha_insert >= DATE_FORMAT('2021-08-13',"%Y-%m-%d") AND  fecha_insert <= DATE_FORMAT('2021-08-30',"%Y-%m-%d")

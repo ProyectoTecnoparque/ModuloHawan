@@ -21,7 +21,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="usuarios_inactivos" class="table table-bordered table-striped">
+              <table id="usuarios_inactivos" class="table table-bordered ">
                 <thead>
                   <tr>
                   <th>Id</th>
@@ -99,9 +99,13 @@
   function iniciar() {
     $(".mod_edit").click(buscarinacId);
     $(".activar").click(restaurarestado);
+    $('#usuarios_inactivos').DataTable(
+    )
+    
   }
 
   function buscarinacId() {
+    
     var docum = $(this).parents("tr").find(".doc_in").text();
     $('#mod_inactivos').modal();
 

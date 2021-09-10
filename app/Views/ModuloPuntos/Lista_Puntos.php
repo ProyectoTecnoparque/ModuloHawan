@@ -15,10 +15,10 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="" class="table table-bordered table-striped">
+                            <table id="tabla_puntos" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>N°</th>
                                         <th>Nivel</th>
                                         <th>Puntos Requeridos</th>
                                         <th>Valor</th>
@@ -29,9 +29,9 @@
                                     <?php foreach ($datos as $dato) { ?>
                                         <tr>
                                             <td class="nivel"><?php echo $dato['id']; ?></td>
-                                            <td><?php echo $dato['Nivel']; ?></td>
-                                            <td><?php echo $dato['puntos']; ?></td>
-                                            <td><?php echo $dato['valor']; ?></td>
+                                            <td class="text-center"><?php echo $dato['Nivel']; ?></td>
+                                            <td class="text-center"><?php echo $dato['puntos']; ?></td>
+                                            <td class="text-center"><?php echo $dato['valor']; ?></td>
                                             
                                         </tr>
                                     <?php } ?>
@@ -45,4 +45,10 @@
         </div><!-- /.container-fluid -->
     </div><!-- /.content-header -->
 </div>
+
+<script>
+      $(document).ready(function(){  
+        $('#tabla_puntos').DataTable();  
+    });
+</script>
 

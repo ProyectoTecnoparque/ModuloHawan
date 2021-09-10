@@ -130,8 +130,8 @@ class PerfilUsuario extends BaseController
 	public function NivelUsuario(){
 
 		$id = $_SESSION['id'];
-		$usuarios = new HistorialModel();
-		$data = $usuarios->where('usuario_id',$id)->countAll();
+		$historial = new HistorialModel();
+		$data = $historial->where('usuario_id',$id)->countAll();
 
 		if ($data) {
                   echo json_encode($data);

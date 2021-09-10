@@ -6,6 +6,7 @@ use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
 use App\Models\DepartamentosModel;
+use App\Models\HistorialModel;
 
 class BuscarUsuarios extends BaseController
 {
@@ -42,17 +43,19 @@ class BuscarUsuarios extends BaseController
 	public function buscarporId()
 	{
 		$usuarios = new UsuariosModel();
+		$historial = new HistorialModel();
 		$id = $this->request->getPostGet('doc');
-		$usuario = $usuarios->select('usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,
-		                              usuario.departamento,usuario.direccion,usuario.genero,usuario.tipo_usuario,
-									  usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre')
+
+		$usuario = $usuarios->select('usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,usuario.departamento,usuario.direccion,usuario.genero,usuario.tipo_usuario,
+		                            usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre,point_acum.usuario_id,SUM(point_acum.puntos_sum) -SUM(point_acum.puntos_rest) AS puntos_rest ')
 			->join('departamentos', 'departamentos.id_depa=usuario.departamento')
+			->join('point_acum ',' usuario.id = point_acum.usuario_id')
 			->where('usuario.id', $id)
 			->first();
 		$data = ['datos' => $usuario];
 
 		echo view('template/header',);
-		echo view('ModuloUsuarios/detalle_usuario', $data);
+		echo view('ModuloUsuarios/detalle_usuario', $data );
 		echo view('template/footer');
 	}
 

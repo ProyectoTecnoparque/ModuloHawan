@@ -52,7 +52,7 @@
                               </select>
                               <input id="puntos2"  class="col-sm-2 form-control" value="">
 
-                              <input id="puntos" disabled class="col-sm-2 form-control" value="<?php echo $datos['puntos'] ?>" >
+                              <input id="puntos" disabled class="col-sm-2 form-control" value="<?php echo $datos['puntos_rest'] ?>" >
                               <input type="hidden" id="id" class="col-sm-2" value="<?php echo $datos['id'] ?>" >
                               <a type='submit' id="edit_point" class="btn btn-success text-light ml-2 habilitar" >Editar Puntos</a>
                             </dl>
@@ -96,7 +96,7 @@ function Guardar_puntos(){
   tipo_ingreso = $('#tipo_ingreso').val();
 
 
-  alert(tipo_ingreso)  
+  console.log(tipo_ingreso)  
 if (tipo_ingreso=="sum") {
 
     sum_puntos =$('#puntos2').val();

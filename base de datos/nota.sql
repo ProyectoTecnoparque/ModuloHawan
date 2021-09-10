@@ -133,3 +133,17 @@ CREATE TABLE IF NOT EXISTS `point_acum` (
   CONSTRAINT `point_acum_ibfk_1` FOREIGN KEY (`id_nivel`) REFERENCES `punto_nivel` (`id`),
   CONSTRAINT `point_acum_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=INNODB  DEFAULT CHARSET=utf8mb4;
+
+
+SELECT usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,usuario.departamento,usuario.direccion,usuario.genero,usuario.tipo_usuario,
+usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre
+FROM usuario INNER JOIN departamentos ON usuario.departamento = departamentos.id_depa
+WHERE usuario.id = 11;
+
+
+
+SELECT usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,usuario.departamento,usuario.direccion,usuario.genero,usuario.tipo_usuario,
+usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre,point_acum.usuario_id, SUM(point_acum.puntos_sum) AS puntos_acum ,SUM(point_acum.puntos_rest) AS puntos_rest
+FROM usuario INNER JOIN departamentos ON usuario.departamento = departamentos.id_depa
+INNER JOIN point_acum ON usuario.id = point_acum.usuario_id
+WHERE usuario.id = 3;

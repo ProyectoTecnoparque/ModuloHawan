@@ -15,10 +15,10 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="" class="table table-bordered table-striped">
+                            <table id="tabla_puntos" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
+                                        <th>N°</th>
                                         <th>Nivel</th>
                                         <th>Puntos Requeridos</th>
                                         <th>Valor</th>
@@ -28,11 +28,11 @@
                                 <tbody id="tbodyusuarios">
                                     <?php foreach ($datos as $dato) { ?>
                                         <tr>
-                                            <td class="nivel"><?php echo $dato['id']; ?></td>
-                                            <td><?php echo $dato['Nivel']; ?></td>
-                                            <td><?php echo $dato['puntos']; ?></td>
-                                            <td><?php echo $dato['valor']; ?></td>
-                                            <th><a type="button" class="btn btn-primary edit_nivel" data-bs-toggle="modal" data-bs-target="#editarRango">Editar <i class="far fa-edit"></a></th>
+                                            <td class="nivel text-center"><?php echo $dato['id']; ?></td>
+                                            <td class="text-center"><?php echo $dato['Nivel']; ?></td>
+                                            <td class="text-center"><?php echo $dato['puntos']; ?></td>
+                                            <td class="text-center"><?php echo $dato['valor']; ?></td>
+                                            <th><a type="button" class="btn btn-primary edit_nivel text-white" data-bs-toggle="modal" data-bs-target="#editarRango">Editar <i class="far fa-edit"></a></th>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
@@ -93,7 +93,8 @@
 </div>
 
 <script>
-    $(document).ready(function(){     
+    $(document).ready(function(){  
+        $('#tabla_puntos').DataTable();   
         $("#edit_nivel").submit(function(event){
             event.preventDefault();
             EditarNivel();
