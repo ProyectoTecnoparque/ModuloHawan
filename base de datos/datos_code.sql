@@ -15,7 +15,7 @@
 -- Volcando datos para la tabla code.departamentos: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `departamentos` DISABLE KEYS */;
 INSERT INTO `departamentos` (`id_depa`, `nombre`) VALUES
-	  (1, 'Amazonas'),
+	(1, 'Amazonas'),
 	(2, 'Antioquia'),
 	(3, 'Arauca'),
 	(4, 'Atlantico'),

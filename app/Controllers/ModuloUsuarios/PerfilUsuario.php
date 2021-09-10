@@ -31,7 +31,7 @@ class PerfilUsuario extends BaseController
 		$id_perfil = $this->request->getPostGet('id_perfil');
 		$data = $usuarios->select('usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,
 		                              usuario.departamento,usuario.direccion,usuario.genero,usuario.puntos,usuario.tipo_usuario,
-									  usuario.estado,usuario.fecha_insert,departamentos.nombre')
+									  usuario.estado,usuario.fecha_insert,departamentos.nombre,departamentos.id_depa')
 			->join('departamentos', 'departamentos.id_depa=usuario.departamento')
 			->where('usuario.id', $id_perfil)
 			->findAll();
@@ -49,9 +49,9 @@ class PerfilUsuario extends BaseController
 		$nombre_edit = $this->request->getPostGet('nombre_edit');
 		$apellido_edit = $this->request->getPostGet('apellido_edit');
 		$direccion_edit = $this->request->getPostGet('direccion_edit');
-		$id_ciudad = $this->request->getPostGet('id_ciudad');
+		$id_departamento = $this->request->getPostGet('id_departamento');
 
-		$data = $usuarios->set(['nombres' => $nombre_edit, 'apellidos' => $apellido_edit, 'direccion' => $direccion_edit, 'id_ciudad' => $id_ciudad])->where('id', $id_perfil)->update();
+		$data = $usuarios->set(['nombres' => $nombre_edit, 'apellidos' => $apellido_edit, 'direccion' => $direccion_edit, 'departamento' => $id_departamento])->where('id', $id_perfil)->update();
 
 		if ($data) {
 			echo json_encode($data);

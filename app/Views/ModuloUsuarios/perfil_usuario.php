@@ -84,10 +84,11 @@
                               <label class='form-label'>Departamento</label>
 
                               <select name='departamento' id='departamento' class='form-control '>
-                                <option value='selected disabled'>Seleccione Departamento</option>
-                                
+                                   <option id="departa" name="departa" disabled selected value=""></option>
+                                   <?php foreach ($departamentos as $departamento) { ?>
+                                    <option id="id_depa" value="<?php echo $departamento['id_depa']; ?>"><?php echo $departamento['nombre']; ?></option>
+                                   <?php } ?>
                               </select>
-
                             </div>
                             <div class="col-12 mt-4">
                               <button id="campos_editar" class="btn btn-success"><i class="fas fa-user-edit mr-2"></i>Editar Datos</button>
@@ -208,8 +209,8 @@
         $('#fecha_insert').val(data[i].fecha_insert);
         $('#genero').val(data[i].genero);
         $('#direccion_edit').val(data[i].direccion);
-        $('#departamento').val(data[i].nombre);
-
+        $('#departa').val(data[i].nombre);
+        
       }
     }).fail(function(data) {
       console.log(data)
@@ -242,10 +243,10 @@
     var apellido_edit = $('#apellido_edit').val();
     var tel_edit = $('#telefono_edit').val();
     var direccion_edit = $('#direccion_edit').val();
-    var id_ciudad = $('#ciudad').val();
+    var id_departamento = $('#id_depa').val();
 
     if (nombre_edit == '' || apellido_edit == '' || tel_edit == '' ||
-      direccion_edit == '' || id_ciudad == '') {
+      direccion_edit == '' || id_departamento == '') {
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -263,7 +264,7 @@
           apellido_edit: apellido_edit,
           tel_edit: tel_edit,
           direccion_edit: direccion_edit,
-          id_ciudad: id_ciudad
+          id_departamento: id_departamento
         },
 
       }).done(function(data) {

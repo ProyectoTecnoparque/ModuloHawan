@@ -101,14 +101,19 @@ if (isset($_SESSION['tipo_usuario'])) {
                               </select>
                            </div>
 
-                           <div class="input-group mb-3">
-                              <select name="departamento" id="departamento" class="form-control mr-3  ">
+
+                           <div class="input-group mb-4">
+                               <select name="departamento" id="departamento" class="form-control mr-3  ">
                                  <option value="" disabled selected>Seleccione Departamento</option>
-                                    <option value="1">Risaralda</option>
-                                    <option value="2">Quindio</option>
-                                    <option value="3">Caldas</option>
+                                   <?php foreach ($datos as $dato) { ?>
+                                    <option value="<?php echo $dato['id_depa']; ?>"><?php echo $dato['nombre']; ?></option>
+                                    <?php } ?>
                               </select>
+                              <div class="input-group-text">
+                                    <span class="fas fa-street-view"></span>
+                              </div>
                            </div>
+
 
                            <div class="input-group mb-3">
                               <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña">

@@ -59,8 +59,11 @@ class Inicio extends BaseController
 
    public function Registrar()
    {
-  
-      echo view('RegistrarUsuario');
+      $this->departamentos = new DepartamentosModel();
+		$departamento = $this->departamentos->select('*')->findAll();
+		$datos = ['datos' => $departamento];
+
+      echo view('RegistrarUsuario',$datos);
    }
 
    public function RegistrarUsuario()

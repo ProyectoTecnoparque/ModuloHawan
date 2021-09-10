@@ -5,6 +5,7 @@ namespace App\Controllers\ModuloUsuarios;
 use CodeIgniter\Controller;
 use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
+use App\Models\DepartamentosModel;
 
 class BuscarUsuarios extends BaseController
 {
@@ -29,8 +30,12 @@ class BuscarUsuarios extends BaseController
 		$data['modulo_selected'] = "Usuarios";
 		$data['opcion_selected'] = "BuscarUsuarios";
 
+		$this->departamentos = new DepartamentosModel();
+		$departamento = $this->departamentos->select('*')->findAll();
+		$datos = ['datos' => $departamento];
+
 		echo view('template/header', $data);
-		echo view('ModuloUsuarios/registrar_admin');
+		echo view('ModuloUsuarios/registrar_admin',$datos);
 		echo view('template/footer');
 	}
 
