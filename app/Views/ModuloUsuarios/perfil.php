@@ -288,6 +288,7 @@
       dataType: 'text',
       success:function (data) {
         $("#nivel").text(data);
+        console.log(data)
       }
       
     });

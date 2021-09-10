@@ -131,7 +131,9 @@ class PerfilUsuario extends BaseController
 
 		$id = $_SESSION['id'];
 		$historial = new HistorialModel();
-		$data = $historial->where('usuario_id',$id)->countAll();
+		$data = $historial->select('usuario.id,point_acum.usuario_id,SUM(point_acum.puntos_sum) - SUM(point_acum.puntos_rest) ')
+						  ->join('usuario',' usuario.id = point_acum.usuario_id')
+						  ->where('usuario_id',$id);
 
 		if ($data) {
                   echo json_encode($data);

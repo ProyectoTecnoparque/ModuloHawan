@@ -147,3 +147,10 @@ usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre,point_ac
 FROM usuario INNER JOIN departamentos ON usuario.departamento = departamentos.id_depa
 INNER JOIN point_acum ON usuario.id = point_acum.usuario_id
 WHERE usuario.id = 3;
+
+
+SELECT usuario.id,usuario.email,usuario.documento,usuario.nombres,usuario.apellidos,usuario.departamento,usuario.direccion,usuario.genero,usuario.tipo_usuario,
+usuario.estado,usuario.puntos,usuario.fecha_insert,departamentos.nombre,point_acum.usuario_id, SUM(point_acum.puntos_sum) -  SUM(point_acum.puntos_rest) AS puntos_rest 
+FROM usuario INNER JOIN departamentos ON usuario.departamento = departamentos.id_depa
+INNER JOIN point_acum ON usuario.id = point_acum.usuario_id
+WHERE usuario.id = 3;

@@ -78,7 +78,7 @@ $routes->group('ModuloUsuarios', ['namespace' => 'App\Controllers\ModuloUsuarios
 
     $routes->add('PerfilUsuario', 'PerfilUsuario::index');
 
-    $routes->add('PerfilUsuario', 'PerfilUsuario::NivelUsuario');
+    $routes->add('NivelUsuario', 'PerfilUsuario::NivelUsuario');
     // Buscar y Editar datos generales del perfil 
     $routes->add('BuscarDatosPerfil', 'PerfilUsuario::buscar_session');
 
