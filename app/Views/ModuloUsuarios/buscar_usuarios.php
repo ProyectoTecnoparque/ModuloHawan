@@ -28,7 +28,7 @@
                     <th>Documento</th>
                     <th>Nombre </th>
                     <th>Tipo Usuario</th>
-                    <th>Puntos</th>
+                    <!-- <th>Puntos</th> -->
                     <th>Estado</th>
                     <th>Acciones</th>
                   </tr>
@@ -41,7 +41,7 @@
                       <td><?php echo $dato['documento']; ?></td>
                       <td><?php echo $dato['nombres'] . ' ' . $dato['apellidos']; ?></td>
                       <td><?php echo $dato['tipo_usuario']; ?></td>
-                      <td><?php echo $dato['puntos']; ?></td>
+                      <!-- <td><?php echo $dato['puntos']; ?></td> -->
                       <td><span class="btn bg-success"><?php echo $dato['estado']; ?></span></td>
                       <td><a t type="button" class="btn btn-primary mr-2 modal_edit" href="<?php echo base_url('/ModuloUsuarios/BuscarusuId?doc=') . $dato['id']; ?>"><i class="far fa-eye"></i></a><a class="btn btn-danger toastrDefaultSuccess desactivar"><i class="fas fa-user-lock"></i></a></td>
                     </tr>

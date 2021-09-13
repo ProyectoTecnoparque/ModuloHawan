@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 use App\Models\UsuariosModel;
 use App\Models\DepartamentosModel;
 use App\Models\HistorialModel;
+use App\Models\PuntosModel;
 
 class PerfilUsuario extends BaseController
 {
@@ -105,16 +106,19 @@ class PerfilUsuario extends BaseController
 	}
 
 	public function EditarPuntosres()
+	
 	{
-	  $historial = new HistorialModel();	
+	  $historial = new HistorialModel();
+	  $niveles= new PuntosModel();
       $new_point = $this->request->getPostGet('res_puntos');
 	  $id_user = $this->request->getPostGet('id_res');
+	  $nivel = $niveles->select('id')->where('puntos'<= $new_point);
 
       $data = $historial->save([
 		  'usuario_id' => $id_user,
 		  'puntos_sum' =>'0',
 		  'puntos_rest' => $new_point,
-		  'id_nivel' =>'2',]);
+		  'id_nivel' => '1']);
 
 	  if ($data) {
 		$mensaje = "OK#INSERT";

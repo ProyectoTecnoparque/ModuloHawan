@@ -14,8 +14,8 @@
 
 
 -- Volcando estructura de base de datos para code
-CREATE DATABASE IF NOT EXISTS `code2` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
-USE `code2`;
+CREATE DATABASE IF NOT EXISTS `code` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+USE `code`;
 
 -- Volcando estructura para tabla code.departamentos
 CREATE TABLE IF NOT EXISTS `departamentos` (
@@ -28,14 +28,19 @@ CREATE TABLE IF NOT EXISTS `departamentos` (
 
 -- Volcando estructura para tabla code.point_acum
 CREATE TABLE IF NOT EXISTS `point_acum` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
-  `acum_point` int(11) NOT NULL,
+  `puntos_sum` int(11) DEFAULT NULL,
+  `puntos_rest` int(11) DEFAULT NULL,
   `id_nivel` int(11) NOT NULL,
-  `fecha_insert` timestamp NULL DEFAULT NULL,
-  UNIQUE KEY `id_nivel` (`id_nivel`) USING BTREE,
-  UNIQUE KEY `usuario_id` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `fecha_insert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `FK_point_acum_usuario` (`puntos_sum`),
+  KEY `point_acum_ibfk_1` (`id_nivel`),
+  KEY `point_acum_ibfk_2` (`usuario_id`),
+  CONSTRAINT `point_acum_ibfk_1` FOREIGN KEY (`id_nivel`) REFERENCES `punto_nivel` (`id`),
+  CONSTRAINT `point_acum_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -46,7 +51,7 @@ CREATE TABLE IF NOT EXISTS `punto_nivel` (
   `puntos` int(11) NOT NULL,
   `valor` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
 
@@ -65,8 +70,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `estado` enum('Activo','Inactivo') NOT NULL,
   `fecha_insert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `puntos` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `puntos` (`puntos`),
+  KEY `FK_usuario_departamentos` (`departamento`),
+  CONSTRAINT `FK_usuario_departamentos` FOREIGN KEY (`departamento`) REFERENCES `departamentos` (`id_depa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- La exportación de datos fue deseleccionada.
 

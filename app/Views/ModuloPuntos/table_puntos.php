@@ -49,7 +49,7 @@
 <div class="modal fade" id="editarRango" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editarRangoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <form action="#" id="edit_nivel" method="POST">
+          <form id="edit_nivel" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="editarRangoLabel">Editar Datos</h5>
                     <button type="button" class="btn " data-bs-dismiss="modal" >X</button>
@@ -58,7 +58,7 @@
                 <div class="modal-body">
                     <div class="input-group mb-3">
                         <input type="hidden" id="id_nivel">
-                        <input type="text" class="form-control name_nivel" name="name_nivel" id="name_nivel" placeholder="Nombre del Nivel">
+                        <input type="text" class="form-control name_nivel" id="name_nivel" name="name_nivel_edit" placeholder="Nombre del Nivel">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-certificate"></span>
@@ -67,14 +67,14 @@
                     </div>
                     <div class="input-group mb-4">
 
-                        <input type="text" class="form-control puntos_req" id="puntos_req" name="puntos_req" placeholder="Ingrese el nuevo datos">
+                        <input type="text" class="form-control puntos_req" id="puntos_req" name="puntos_req_edit" placeholder="Ingrese el nuevo datos">
                         <div class="input-group-append mr-2">
                             <div class="input-group-text">
                                 <span> <i class="fas fa-coins"></i></span>
 
                             </div>
                         </div>
-                        <input type="text" class="form-control val_puntos" id="val_puntos" name="val_puntos" placeholder="Ingrese el nuevo datos">
+                        <input type="text" class="form-control val_puntos" id="val_puntos" name="val_puntos_edit" placeholder="Ingrese el nuevo datos">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-hand-holding-usd"></span>
@@ -124,9 +124,9 @@
     }).done(function(data) {
       for (var i = 0; i < data.length; i++) {
         $('#id_nivel').val(data[i].id);
-        $('.name_nivel').val(data[i].Nivel);
-        $('.puntos_req').val(data[i].puntos);
-        $('.val_puntos').val(data[i].valor);
+        $('#name_nivel').val(data[i].Nivel);
+        $('#puntos_req').val(data[i].puntos);
+        $('#val_puntos').val(data[i].valor);
        
       }
     }).fail(function(data) {
@@ -165,7 +165,6 @@
         }
 
       }).done(function(data) {
-
         if (data) {
           Swal.fire({
             text: 'Se ha enviado exitosamente los datos.',
@@ -174,7 +173,6 @@
             confirmButtonText: 'Aceptar',
 
           }).then((result) => {
-
             window.location = '<?php echo base_url('/Puntos'); ?>';
           })
         }
