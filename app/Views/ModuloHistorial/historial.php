@@ -101,7 +101,10 @@
 
 <script>
   $(document).ready(function() {
-    
+    $('#data_table').DataTable({"language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+      },});
+
     $('#resultado_search').hide();
     $("#buscar_info").submit(function(event) {
       event.preventDefault();
@@ -114,7 +117,11 @@
     $("#data_table").removeAttr("id");
     $("#resultado_search").attr("id","data_table");
     $('#data_table').show();
-    $('#data_table').DataTable();
+    $('#data_table').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+      },
+    });
 
     $("#archivo").html('Descargar Busqueda');
 

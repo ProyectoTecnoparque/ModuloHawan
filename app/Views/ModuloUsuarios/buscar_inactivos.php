@@ -99,8 +99,11 @@
   function iniciar() {
     $(".mod_edit").click(buscarinacId);
     $(".activar").click(restaurarestado);
-    $('#usuarios_inactivos').DataTable(
-    )
+    $('#usuarios_inactivos').DataTable({
+      "language": {
+        "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+      },
+    });
     
   }
 
